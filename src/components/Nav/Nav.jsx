@@ -1,8 +1,12 @@
-import { NavLink } from 'react-router-dom';
-import clsx from 'clsx';
+import { NavLink } from "react-router-dom";
+import clsx from "clsx";
 
-import styles from './Nav.module.css';
-import { useAuthContext } from '../../features/Auth/AuthContext';
+import styles from "./Nav.module.css";
+import { useAuthContext } from "../../features/Auth/AuthContext";
+
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import HomeIcon from "@mui/icons-material/Home";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function BrandNavLink({ children, ...props }) {
   return (
@@ -24,16 +28,9 @@ export function Nav() {
     <nav className={styles.mainMenu}>
       <menu>
         <li>
-          <BrandNavLink to="/">Home</BrandNavLink>
-        </li>
-        <li>
-          <BrandNavLink to="counter">Counter</BrandNavLink>
-        </li>
-        <li>
-          <BrandNavLink to="todos">Todos</BrandNavLink>
-        </li>
-        <li>
-          <BrandNavLink to="comm">Communication</BrandNavLink>
+          <BrandNavLink to="/">
+            <HomeIcon /> Home{" "}
+          </BrandNavLink>
         </li>
         {user === null && (
           <>
@@ -43,11 +40,20 @@ export function Nav() {
             <li>
               <BrandNavLink to="register">Register</BrandNavLink>
             </li>
+            <li>
+              <BrandNavLink>
+                <div>
+                  <span>Cart</span>
+                  <ShoppingCartIcon />
+                  <FavoriteIcon style={{ color: "white" }} />
+                </div>
+              </BrandNavLink>
+            </li>
           </>
         )}
         {user && (
           <li className={styles.pushRight}>
-            Welcome, <BrandNavLink to="profile">{user.firstName}!</BrandNavLink>{' '}
+            Welcome, <BrandNavLink to="profile">{user.firstName}!</BrandNavLink>{" "}
             <a
               href="#"
               className={styles.navLink}
