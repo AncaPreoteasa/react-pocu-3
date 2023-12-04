@@ -7,6 +7,7 @@ import { useAuthContext } from "../../features/Auth/AuthContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PersonIcon from "@mui/icons-material/Person";
 
 function BrandNavLink({ children, ...props }) {
   return (
@@ -48,6 +49,9 @@ export function Nav() {
                   <FavoriteIcon style={{ color: "white" }} />
                 </div>
               </BrandNavLink>
+            </li>
+            <li>
+              <PersonIcon style={{ color: "white" }} />
             </li>
           </>
         )}

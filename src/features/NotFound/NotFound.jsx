@@ -1,3 +1,5 @@
+import styles from "./NotFound.module.css";
+
 export function NotFound() {
-  return <h1>Not Found</h1>;
+  return <h1>Page Not Found 😞</h1>;
 }
