@@ -30,7 +30,7 @@ export function Nav() {
       <menu>
         <li>
           <BrandNavLink to="/">
-            <HomeIcon /> Home{" "}
+            <HomeIcon /> Home
           </BrandNavLink>
         </li>
         {user === null && (
@@ -51,13 +51,15 @@ export function Nav() {
               </BrandNavLink>
             </li>
             <li>
-              <PersonIcon style={{ color: "white" }} />
+              <BrandNavLink to="profile">
+                Profile <PersonIcon style={{ color: "white" }} />
+              </BrandNavLink>
             </li>
           </>
         )}
         {user && (
           <li className={styles.pushRight}>
-            Welcome, <BrandNavLink to="profile">{user.firstName}!</BrandNavLink>{" "}
+            Welcome, <BrandNavLink to="profile">{user.firstName}!</BrandNavLink>
             <a
               href="#"
               className={styles.navLink}

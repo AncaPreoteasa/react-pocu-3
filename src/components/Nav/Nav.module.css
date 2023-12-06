@@ -32,4 +32,5 @@
 
 .pushRight {
   margin-left: auto;
+  color: var(--text-on-dark);
 }

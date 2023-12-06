@@ -63,7 +63,8 @@
       "img": "/doll.jpeg",
       "description": "Barbie doll, 20 cm",
       "category": "girls",
-      "inStock": true
+      "inStock": true,
+      "favorite": false
     },
     {
       "name": "car",
@@ -73,7 +74,8 @@
       "img": "/car.jpg",
       "description": "Sports car, 15 cm",
       "category": "boys",
-      "inStock": false
+      "inStock": false,
+      "favorite": false
     },
     {
       "name": "teddy",
@@ -83,7 +85,8 @@
       "img": "/teddy.jpg",
       "description": "Teddy bear, 40 cm",
       "category": "girls",
-      "inStock": true
+      "inStock": true,
+      "favorite": false
     },
     {
       "name": "lego",
@@ -93,7 +96,8 @@
       "img": "/legos.webp",
       "description": "Legos, 150 cm",
       "category": "boys",
-      "inStock": true
+      "inStock": true,
+      "favorite": false
     },
     {
       "name": "football",
@@ -103,7 +107,8 @@
       "img": "/football.webp",
       "description": "Football, size 5",
       "category": "boys",
-      "inStock": true
+      "inStock": true,
+      "favorite": false
     },
     {
       "name": "rattle",
@@ -113,7 +118,8 @@
       "img": "/rattle.webp",
       "description": "Baby rattle, rainbow color",
       "category": "baby",
-      "inStock": true
+      "inStock": true,
+      "favorite": false
     }
   ]
 }
