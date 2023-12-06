@@ -4,12 +4,16 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
+  align-items: stretch;
 }
 
 .toysList li {
   border: 1px solid #ccc;
   padding: 15px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .toysList p {
@@ -47,9 +51,22 @@
   background-color: var(--primary-light);
 }
 
+.starRating {
+  display: flex;
+  justify-content: center;
+}
+
+.outOfStock {
+  background-color: #c3c3c3;
+}
+
 @media (max-width: 600px) {
   .toysList {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  .toysList button {
+    font-size: 0.9em;
+    width: 60%;
   }
 }
 
@@ -63,5 +80,11 @@
   .toysList button {
     font-size: 0.9em;
     width: 60%;
+  }
+}
+
+@media (max-width: 900px) {
+  .toysList {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }

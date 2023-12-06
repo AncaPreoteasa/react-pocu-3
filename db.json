@@ -53,5 +53,67 @@
       "completed": false,
       "id": 8
     }
+  ],
+  "toys": [
+    {
+      "name": "doll",
+      "price": 5,
+      "id": 1,
+      "amount": 10,
+      "img": "/doll.jpeg",
+      "description": "Barbie doll, 20 cm",
+      "category": "girls",
+      "inStock": true
+    },
+    {
+      "name": "car",
+      "price": 7,
+      "id": 2,
+      "amount": 0,
+      "img": "/car.jpg",
+      "description": "Sports car, 15 cm",
+      "category": "boys",
+      "inStock": false
+    },
+    {
+      "name": "teddy",
+      "price": 7,
+      "id": 3,
+      "amount": 10,
+      "img": "/teddy.jpg",
+      "description": "Teddy bear, 40 cm",
+      "category": "girls",
+      "inStock": true
+    },
+    {
+      "name": "lego",
+      "price": 10,
+      "id": 4,
+      "amount": 12,
+      "img": "/legos.webp",
+      "description": "Legos, 150 cm",
+      "category": "boys",
+      "inStock": true
+    },
+    {
+      "name": "football",
+      "price": 2,
+      "id": 5,
+      "amount": 20,
+      "img": "/football.webp",
+      "description": "Football, size 5",
+      "category": "boys",
+      "inStock": true
+    },
+    {
+      "name": "rattle",
+      "price": 1,
+      "id": 6,
+      "amount": 30,
+      "img": "/rattle.webp",
+      "description": "Baby rattle, rainbow color",
+      "category": "baby",
+      "inStock": true
+    }
   ]
 }
