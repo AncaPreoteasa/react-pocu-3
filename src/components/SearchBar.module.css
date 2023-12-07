@@ -1,0 +1,12 @@
+.container {
+  background-color: var(--primary-light);
+  display: flex;
+  justify-content: center;
+  padding: 0.5em;
+}
+
+.searchBar {
+  padding: 0.3em;
+  margin: 0.4em;
+  width: 20%;
+}
