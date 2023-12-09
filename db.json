@@ -13,52 +13,28 @@
       "firstName": "Paul",
       "lastName": "Negoescu",
       "id": 2
-    },
-    {
-      "email": "p@pdsad.com",
-      "password": "$2a$10$KmklQ75o5EXV8g90IqZ6We4kjNft.JcDR034e4c/Fuzqp4bxk23Ea",
-      "firstName": "Paul",
-      "lastName": "Negoescu",
-      "id": 3
-    },
-    {
-      "email": "la@la",
-      "password": "$2a$10$SfVDq6UlDg.wPsQ6G30Rf.74S5mDGga0eC0W1wxuSk7/X2YEquiH6",
-      "firstName": "Laura",
-      "lastName": "Dimitrie",
-      "id": 4
     }
   ],
-  "todos": [
+  "carts": [
     {
-      "id": 4,
+      "id": 1,
       "userId": 1,
-      "title": "Sleep",
-      "completed": true
+      "items": [
+        {
+          "toyId": 2,
+          "quantity": 1
+        }
+      ]
     },
     {
-      "userId": 1,
-      "title": "Buy milk",
-      "completed": false,
-      "id": 5
-    },
-    {
+      "id": 2,
       "userId": 2,
-      "title": "Visit grandma",
-      "completed": false,
-      "id": 6
-    },
-    {
-      "userId": 2,
-      "title": "Buy Christmas gifts",
-      "completed": true,
-      "id": 7
-    },
-    {
-      "userId": 2,
-      "title": "asdsadsa",
-      "completed": false,
-      "id": 8
+      "items": [
+        {
+          "toyId": 2,
+          "quantity": 1
+        }
+      ]
     }
   ],
   "toys": [

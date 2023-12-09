@@ -1,18 +1,18 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { object, ref, string } from 'yup';
-import { useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { PasswordInput } from '../../components/PasswordInput/PasswordInput';
-import { useAuthContext } from './AuthContext';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { object, ref, string } from "yup";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { PasswordInput } from "../../components/PasswordInput/PasswordInput";
+import { useAuthContext } from "./AuthContext";
 
 const commonSchema = {
   email: string()
-    .email('The email address is not valid')
-    .required('Please provide an email address'),
+    .email("The email address is not valid")
+    .required("Please provide an email address"),
   password: string()
-    .required('Please type a password')
-    .min(4, 'The password needs to be at least 4 characters long'),
+    .required("Please type a password")
+    .min(4, "The password needs to be at least 4 characters long"),
 };
 
 const loginSchema = object(commonSchema);
@@ -20,16 +20,17 @@ const loginSchema = object(commonSchema);
 const registerSchema = object({
   ...commonSchema,
   retypePassword: string()
-    .required('Please type your password again.')
-    .oneOf([ref('password')], 'The two passwords do not match'),
-  firstName: string().required('Please tell us your first name'),
-  lastName: string().required('Please tell us your last name'),
+    .required("Please type your password again.")
+    .oneOf([ref("password")], "The two passwords do not match"),
+  firstName: string().required("Please tell us your first name"),
+  lastName: string().required("Please tell us your last name"),
 });
 
 export function Auth() {
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
+  const navigate = useNavigate();
   let isRegister = false;
-  if (pathname === '/register') {
+  if (pathname === "/register") {
     isRegister = true;
   }
 
@@ -49,16 +50,17 @@ export function Auth() {
     const { retypePassword, ...dataForServer } = values;
 
     const data = await fetch(
-      `http://localhost:3000/${isRegister ? 'register' : 'login'}`,
+      `http://localhost:3000/${isRegister ? "register" : "login"}`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-type': 'application/json',
+          "Content-type": "application/json",
         },
         body: JSON.stringify(dataForServer),
       }
     ).then(async (res) => {
       const data = res.json();
+      console.log("data", data);
       // if (res.status >= 400 && res.status < 500) {
       //   const message = await data;
       //   toast.error(message);
@@ -71,22 +73,25 @@ export function Auth() {
       return;
     }
 
-    toast.success('You have logged in successfully.');
+    toast.success("You have logged in successfully.");
     login(data);
+
+    const path = state?.from ?? "/";
+    navigate(path);
   }
 
   return (
     <>
-      <h1>{isRegister ? 'Register' : 'Login'}</h1>
+      <h1>{isRegister ? "Register" : "Login"}</h1>
       <form className="brandForm" noValidate onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" {...register('email')} />
+        <input type="email" id="email" {...register("email")} />
         {errors.email && (
           <p className="secondColumn fieldError">{errors.email.message}</p>
         )}
 
         <label htmlFor="password">Password</label>
-        <PasswordInput name="password" {...register('password')} />
+        <PasswordInput name="password" {...register("password")} />
         {errors.password && (
           <p className="secondColumn fieldError">{errors.password.message}</p>
         )}
@@ -96,7 +101,7 @@ export function Auth() {
             <label htmlFor="retypePassword">Retype Password</label>
             <PasswordInput
               name="retypePassword"
-              {...register('retypePassword')}
+              {...register("retypePassword")}
             />
             {errors.retypePassword && (
               <p className="secondColumn fieldError">
@@ -105,7 +110,7 @@ export function Auth() {
             )}
 
             <label htmlFor="firstName">First Name</label>
-            <input type="text" id="firstName" {...register('firstName')} />
+            <input type="text" id="firstName" {...register("firstName")} />
             {errors.firstName && (
               <p className="secondColumn fieldError">
                 {errors.firstName.message}
@@ -113,7 +118,7 @@ export function Auth() {
             )}
 
             <label htmlFor="lastName">Last Name</label>
-            <input type="text" id="lastName" {...register('lastName')} />
+            <input type="text" id="lastName" {...register("lastName")} />
             {errors.lastName && (
               <p className="secondColumn fieldError">
                 {errors.lastName.message}
@@ -123,7 +128,7 @@ export function Auth() {
         )}
 
         <button type="submit" className="secondColumn btn">
-          {isRegister ? 'Register' : 'Login'}
+          {isRegister ? "Register" : "Login"}
         </button>
       </form>
     </>

@@ -1,5 +1,5 @@
-import { createContext, useCallback, useContext, useMemo } from 'react';
-import { useLocalStorageState } from '../../hooks/useLocalStorageState';
+import { createContext, useCallback, useContext, useMemo } from "react";
+import { useLocalStorageState } from "../../hooks/useLocalStorageState";
 
 const initialAuth = {
   accessToken: null,
@@ -9,7 +9,7 @@ const initialAuth = {
 const AuthContext = createContext(null);
 
 export function AuthContextProvider({ children }) {
-  const [auth, setAuth] = useLocalStorageState('auth', initialAuth);
+  const [auth, setAuth] = useLocalStorageState("auth", initialAuth);
 
   const login = useCallback(
     (data) => {
@@ -33,7 +33,7 @@ export function useAuthContext() {
   const ctx = useContext(AuthContext);
   if (ctx === null) {
     throw new Error(
-      'Please only use useAuthContext inside a descendant of AuthContextProvider.'
+      "Please only use useAuthContext inside a descendant of AuthContextProvider."
     );
   }
   return ctx;
