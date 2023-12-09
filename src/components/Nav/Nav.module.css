@@ -33,4 +33,6 @@
 .pushRight {
   margin-left: auto;
   color: var(--text-on-dark);
+  display: flex;
+  align-items: center;
 }

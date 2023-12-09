@@ -9,6 +9,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 
+import { Favorite } from "../Favorite";
+
 function BrandNavLink({ children, ...props }) {
   return (
     <NavLink
@@ -41,36 +43,33 @@ export function Nav() {
             <li>
               <BrandNavLink to="register">Register</BrandNavLink>
             </li>
-            <li>
-              <BrandNavLink to="cart">
-                <div>
-                  <span>Cart</span>
-                  <ShoppingCartIcon />
-                  <FavoriteIcon style={{ color: "white" }} />
-                </div>
-              </BrandNavLink>
-            </li>
-            <li>
-              <BrandNavLink to="profile">
-                Profile <PersonIcon style={{ color: "white" }} />
-              </BrandNavLink>
-            </li>
           </>
         )}
         {user && (
-          <li className={styles.pushRight}>
-            Welcome, <BrandNavLink to="profile">{user.firstName}!</BrandNavLink>
-            <a
-              href="#"
+          <nav className={styles.pushRight}>
+            Welcome,{" "}
+            <BrandNavLink to="profile">
+              {user.firstName}! <PersonIcon />
+            </BrandNavLink>
+            <li>
+              <BrandNavLink to="cart">
+                <span>Cart</span>
+                <ShoppingCartIcon />
+              </BrandNavLink>
+            </li>
+            <li>
+              <BrandNavLink to="favorite">
+                <FavoriteIcon style={{ color: "white" }} />
+              </BrandNavLink>
+            </li>
+            <BrandNavLink
+              to="/"
               className={styles.navLink}
-              onClick={(e) => {
-                e.preventDefault();
-                logout();
-              }}
+              onClick={() => logout()}
             >
               Logout
-            </a>
-          </li>
+            </BrandNavLink>
+          </nav>
         )}
       </menu>
     </nav>
