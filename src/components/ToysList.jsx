@@ -29,6 +29,7 @@ export function ToysList() {
         .then((data) => {
           setToys(data);
           setFilteredToys(data);
+          setReadMoreToy(data[0]);
         });
       setIsLoading(false);
     }
