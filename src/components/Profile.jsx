@@ -6,7 +6,7 @@ export function Profile() {
     <>
       <h1>Profile component</h1>
       <form className="brandForm">
-        <label htmlFor="email"></label>{" "}
+        <label htmlFor="email"></label>
         <input type="email" name="email" id="email">
           Email
         </input>

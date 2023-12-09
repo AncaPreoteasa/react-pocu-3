@@ -8,6 +8,8 @@ import { NotFound } from "../features/NotFound/NotFound";
 import { Auth } from "../features/Auth/Auth";
 import { AuthContextProvider } from "../features/Auth/AuthContext";
 import { ToysList } from "./ToysList";
+import { Cart } from "./Cart";
+import { Profile } from "./Profile";
 
 import "react-toastify/dist/ReactToastify.min.css";
 import "./App.css";
@@ -25,6 +27,8 @@ export function App() {
             path="counter"
             element={<Counter initialValue={3} largeStep={10} smallStep={2} />}
           />
+          <Route path="cart" element={<Cart />} />
+          {/* <Route path="profile" element={<Profile />} /> */}
           <Route path="login" element={<Auth />} />
           <Route path="register" element={<Auth />} />
           <Route path="*" element={<NotFound />} />

@@ -42,7 +42,7 @@ export function Nav() {
               <BrandNavLink to="register">Register</BrandNavLink>
             </li>
             <li>
-              <BrandNavLink>
+              <BrandNavLink to="cart">
                 <div>
                   <span>Cart</span>
                   <ShoppingCartIcon />
