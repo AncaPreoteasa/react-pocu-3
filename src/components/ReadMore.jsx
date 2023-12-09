@@ -1,5 +1,7 @@
 import styles from "./ReadMore.module.css";
 import StarRating from "./StarRating";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CloseIcon from "@mui/icons-material/Close";
 
 export function ReadMore({ toy, onClose }) {
   return (
@@ -15,8 +17,12 @@ export function ReadMore({ toy, onClose }) {
         <h2>
           {toy.amount < 4 ? `We have ${toy.amount} left` : "Ready to order?"}
         </h2>
-        <button onClick={onClose}>Close</button>
-        <button>Add to card</button>
+        <button onClick={onClose}>
+          Close <CloseIcon />
+        </button>
+        <button>
+          Add to cart <ShoppingCartIcon />
+        </button>
       </div>
     </>
   );
