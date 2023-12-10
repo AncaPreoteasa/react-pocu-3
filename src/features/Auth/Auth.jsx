@@ -60,13 +60,27 @@ export function Auth() {
       }
     ).then(async (res) => {
       const data = res.json();
-      console.log("data", data);
       // if (res.status >= 400 && res.status < 500) {
       //   const message = await data;
       //   toast.error(message);
       // }
       return data;
     });
+
+    if (isRegister) {
+      console.log("data ", data.user.id);
+      await fetch(`http://localhost:3000/carts`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${data.accessToken}`,
+        },
+        body: JSON.stringify({
+          userId: data.user.id,
+          items: [],
+        }),
+      });
+    }
 
     if (!data.accessToken) {
       toast.error(data);

@@ -5,14 +5,16 @@
       "password": "$2a$10$pVXhgNqe2HEQom8rBiNwq.2OYT69CEIZP9sgGBPcfENHIBNHPpT32",
       "firstName": "Paul",
       "lastName": "Negoescu",
-      "id": 1
+      "id": 1,
+      "isAdmin": true
     },
     {
       "email": "a@a.com",
       "password": "$2a$10$l.ErmfRp81rajq.mR11QRO/IxV.Lv9sOrgITLwOYBi2exILdQ8xM2",
       "firstName": "Paul",
       "lastName": "Negoescu",
-      "id": 2
+      "id": 2,
+      "isAdmin": true
     }
   ],
   "carts": [
@@ -21,7 +23,11 @@
       "userId": 1,
       "items": [
         {
-          "toyId": 2,
+          "toyId": 1,
+          "quantity": 4
+        },
+        {
+          "toyId": 3,
           "quantity": 1
         }
       ]
@@ -40,16 +46,14 @@
   "toys": [
     {
       "name": "doll",
-      "price": 5,
-      "id": 1,
-      "amount": 10,
+      "price": "5000",
+      "amount": "1000",
       "img": "/doll.jpeg",
       "description": "Barbie doll, 20 cm",
       "category": "girls",
-      "inStock": true,
-      "favorite": false,
-      "weight": 0.79,
-      "brand": "Original Barbie"
+      "weight": "0.79",
+      "brand": "Original Barbie",
+      "id": 1
     },
     {
       "name": "car",
@@ -59,8 +63,6 @@
       "img": "/car.jpg",
       "description": "Sports car, 15 cm",
       "category": "boys",
-      "inStock": false,
-      "favorite": false,
       "weight": 0.79,
       "brand": "Carvie"
     },
@@ -72,8 +74,6 @@
       "img": "/teddy.jpg",
       "description": "Teddy bear, 40 cm",
       "category": "girls",
-      "inStock": true,
-      "favorite": false,
       "weight": 0.5,
       "brand": "Notello"
     },
@@ -85,8 +85,6 @@
       "img": "/legos.webp",
       "description": "Legos, 150 cm",
       "category": "boys",
-      "inStock": true,
-      "favorite": false,
       "weight": 0.79,
       "brand": "LEGO"
     },
@@ -98,8 +96,6 @@
       "img": "/football.webp",
       "description": "Football, size 5",
       "category": "boys",
-      "inStock": true,
-      "favorite": false,
       "weight": 0.79,
       "brand": "Notello"
     },
@@ -111,10 +107,19 @@
       "img": "/rattle.webp",
       "description": "Baby rattle, rainbow color",
       "category": "baby",
-      "inStock": true,
-      "favorite": false,
       "weight": 0.79,
       "brand": "Notello"
+    },
+    {
+      "name": "s",
+      "price": "1",
+      "amount": "1",
+      "img": "1",
+      "description": "1",
+      "category": "1",
+      "weight": "1",
+      "brand": "1",
+      "id": 7
     }
   ]
 }

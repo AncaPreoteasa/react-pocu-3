@@ -51,17 +51,14 @@ export function Nav() {
             <BrandNavLink to="profile">
               {user.firstName}! <PersonIcon />
             </BrandNavLink>
-            <li>
-              <BrandNavLink to="cart">
-                <span>Cart</span>
-                <ShoppingCartIcon />
-              </BrandNavLink>
-            </li>
-            <li>
-              <BrandNavLink to="favorite">
-                <FavoriteIcon style={{ color: "white" }} />
-              </BrandNavLink>
-            </li>
+            <BrandNavLink to="admin">Admin</BrandNavLink>
+            <BrandNavLink to="cart">
+              <span>Cart</span>
+              <ShoppingCartIcon />
+            </BrandNavLink>
+            <BrandNavLink to="favorite">
+              <FavoriteIcon style={{ color: "white" }} />
+            </BrandNavLink>
             <BrandNavLink
               to="/"
               className={styles.navLink}

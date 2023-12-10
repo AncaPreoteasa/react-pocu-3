@@ -11,6 +11,7 @@ import { ToysList } from "./ToysList";
 import { Cart } from "./Cart";
 import { Profile } from "./Profile";
 import { Favorite } from "./Favorite";
+import { Admin } from "./Admin";
 
 import "react-toastify/dist/ReactToastify.min.css";
 import "./App.css";
@@ -28,6 +29,7 @@ export function App() {
             path="counter"
             element={<Counter initialValue={3} largeStep={10} smallStep={2} />}
           />
+          <Route path="admin" element={<Admin />} />
           <Route path="cart" element={<Cart />} />
           <Route path="favorite" element={<Favorite />} />
           <Route path="profile" element={<Profile />} />
