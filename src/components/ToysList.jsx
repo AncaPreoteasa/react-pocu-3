@@ -1,8 +1,9 @@
-import { ToysListItem } from "./ToysListItem";
 import { useEffect, useState } from "react";
 
-import { ReadMore } from "./ReadMore";
 import styles from "./ToysList.module.css";
+
+import { ToysListItem } from "./ToysListItem";
+import { ReadMore } from "./ReadMore";
 import { SearchBar } from "./SearchBar";
 import { Loader } from "./Loader";
 
@@ -14,7 +15,6 @@ export function ToysList() {
   const [isLoading, setIsLoading] = useState(false);
 
   function handleReadMore(toy) {
-    console.log(toy);
     setReadMoreToy(toy);
   }
 

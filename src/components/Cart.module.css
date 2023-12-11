@@ -1,0 +1,16 @@
+.allToysContainer {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: start;
+}
+
+.toyContainer {
+  margin: 1.5em;
+}
+
+.imgToysCart {
+  max-width: 10%;
+  height: auto;
+  margin-top: 15px;
+}

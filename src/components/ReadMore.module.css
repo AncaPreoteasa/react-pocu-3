@@ -1,4 +1,69 @@
 .imgToy {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.readMoreContainer {
+  margin-left: 1em;
+  padding: 1em;
+  background-color: var(--background-light);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.readMoreContainer h2 {
+  margin-bottom: 0.5em;
+}
+
+.readMoreContainer p,
+.readMoreContainer h4 {
+  margin: 0.5em 0;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 3px;
+  color: var(--text-on-dark);
+  cursor: pointer;
+
+  &:disabled {
+    background-color: color-mix(in srgb, var(--primary) 40%, white 60%);
+    cursor: not-allowed;
+  }
+}
+
+.btnClose {
+  padding: 0.5rem 1rem;
+  background-color: rgb(38, 31, 31);
+  border: none;
+  border-radius: 3px;
+  color: var(--text-on-dark);
+  cursor: pointer;
+
+  &:disabled {
+    background-color: color-mix(in srgb, var(--primary) 40%, white 60%);
+    cursor: not-allowed;
+  }
+}
+
+.btnContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5em;
+  margin-top: 1em;
+}
+
+.btnContainer .btn {
   width: 50%;
-  height: 50%;
+}
+
+@media (max-width: 900px) {
+  .readMoreContainer {
+    position: absolute;
+    top: 0;
+    background: azure;
+  }
 }

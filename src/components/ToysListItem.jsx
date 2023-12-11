@@ -1,9 +1,10 @@
+import { useAuthContext } from "../features/Auth/AuthContext";
 import styles from "./ToysListItem.module.css";
 import clsx from "clsx";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import { useAuthContext } from "../features/Auth/AuthContext";
 
 export function ToysListItem({ toy, onReadMore }) {
   const { user, accessToken } = useAuthContext();

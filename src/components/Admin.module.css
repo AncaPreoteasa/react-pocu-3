@@ -1,0 +1,12 @@
+.formContainer div {
+  margin: 0.5em;
+}
+
+.formContainer {
+  text-align: left;
+}
+
+.editableToysContainer {
+  text-align: left;
+  list-style-type: none;
+}
