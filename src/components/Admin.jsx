@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 
 import { EditableToy } from "./EditableToy";
+import styles from "./Admin.module.css";
 
 export function Admin() {
   const [toys, setToys] = useState([]);
@@ -13,7 +14,6 @@ export function Admin() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     fetch("http://localhost:3000/toys", {
       method: "POST",
       headers: {
@@ -64,7 +64,10 @@ export function Admin() {
     <>
       <h1>Add toy</h1>
       <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={styles.formContainer}
+        >
           <div>
             <label>Name</label>
             <input type="text" name="name" {...register("name")} />
@@ -89,7 +92,7 @@ export function Admin() {
               {...register("description")}
             />
           </div>
-          <div className="form-control">
+          <div>
             <label>Category</label>
             <input type="text" name="category" {...register("category")} />
           </div>
@@ -107,14 +110,16 @@ export function Admin() {
           </div>
         </form>
       </div>
-      {toys.map((toy) => (
-        <EditableToy
-          key={toy.id}
-          toy={toy}
-          onDeleteToy={() => handleDeleteToy(toy)}
-          onSubmitEditedToy={(updatedToy) => handleSubmitToy(updatedToy)}
-        />
-      ))}
+      <ul className={styles.editableToysContainer}>
+        {toys.map((toy) => (
+          <EditableToy
+            key={toy.id}
+            toy={toy}
+            onDeleteToy={() => handleDeleteToy(toy)}
+            onSubmitEditedToy={(updatedToy) => handleSubmitToy(updatedToy)}
+          />
+        ))}
+      </ul>
     </>
   );
 }

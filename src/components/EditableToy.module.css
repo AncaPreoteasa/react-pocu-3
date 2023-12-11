@@ -1,0 +1,14 @@
+.formContainer {
+  margin: 1.5em;
+}
+
+.img {
+  max-width: 20%;
+  height: auto;
+  margin-top: 15px;
+}
+
+.editableToy {
+  margin-bottom: 2em;
+  display: grid;
+}

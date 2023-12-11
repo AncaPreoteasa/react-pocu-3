@@ -2,7 +2,7 @@
   "users": [
     {
       "email": "p@p.com",
-      "password": "$2a$10$pVXhgNqe2HEQom8rBiNwq.2OYT69CEIZP9sgGBPcfENHIBNHPpT32",
+      "password": "$2a$10$8d64xvXbAymfkYND.KOa6eUepZXltnv9zIGt3gycVsByxosf42WZW",
       "firstName": "Paul",
       "lastName": "Negoescu",
       "id": 1,
@@ -23,12 +23,16 @@
       "userId": 1,
       "items": [
         {
-          "toyId": 1,
-          "quantity": 4
+          "toyId": 5,
+          "quantity": 5
         },
         {
-          "toyId": 3,
+          "toyId": 1,
           "quantity": 1
+        },
+        {
+          "toyId": 6,
+          "quantity": 3
         }
       ]
     },

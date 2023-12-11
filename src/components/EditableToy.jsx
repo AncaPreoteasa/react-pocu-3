@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import styles from "./EditableToy.module.css";
+
 export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -26,7 +28,7 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
 
   return isEditing ? (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
         <div>
           <label>Name</label>
           <input
@@ -61,6 +63,7 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             name="img"
             defaultValue={toy.img}
             {...register("img")}
+            className={styles.img}
           />
         </div>
         <div>
@@ -108,11 +111,11 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
     </div>
   ) : (
     <>
-      <li>
-        <span>{toy.description}</span>
-        <p>{toy.name}</p>
-        <span>{toy.price}﹩</span>
-        {/* <img src={toy.img}></img> */}
+      <li className={styles.editableToy}>
+        <div>{toy.description}</div>
+        <div>{toy.name}</div>
+        <div>{toy.price}﹩</div>
+        <img src={toy.img} className={styles.img}></img>
       </li>
       <button onClick={onDeleteToy}>Delete</button>
       <button onClick={makeToyEditable}>Edit</button>

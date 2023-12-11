@@ -1,15 +1,13 @@
 import { NavLink } from "react-router-dom";
-import clsx from "clsx";
 
-import styles from "./Nav.module.css";
 import { useAuthContext } from "../../features/Auth/AuthContext";
+import clsx from "clsx";
+import styles from "./Nav.module.css";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
-
-import { Favorite } from "../Favorite";
 
 function BrandNavLink({ children, ...props }) {
   return (
