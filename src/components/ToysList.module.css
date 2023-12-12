@@ -85,6 +85,11 @@
   background-color: #c3c3c3;
 }
 
+.noToysFound {
+  text-align: center;
+  font-size: 1.5em;
+}
+
 @media (max-width: 600px) {
   .toysList {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

@@ -52,15 +52,21 @@ export function ToysList() {
       ) : (
         <div className={styles.container}>
           <div className={styles.toysListContainer}>
-            <ul className={styles.toysList}>
-              {filteredToys.map((toy) => (
-                <ToysListItem
-                  key={toy.id}
-                  toy={toy}
-                  onReadMore={() => handleReadMore(toy)}
-                />
-              ))}
-            </ul>
+            {filteredToys.length === 0 ? (
+              <p className={styles.noToysFound}>
+                No toys found 😞 Try searching for a different one 🧸
+              </p>
+            ) : (
+              <ul className={styles.toysList}>
+                {filteredToys.map((toy) => (
+                  <ToysListItem
+                    key={toy.id}
+                    toy={toy}
+                    onReadMore={() => handleReadMore(toy)}
+                  />
+                ))}
+              </ul>
+            )}
           </div>
           {readMoreToy && (
             <div className={styles.readMoreContainer}>
