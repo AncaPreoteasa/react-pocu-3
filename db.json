@@ -113,17 +113,6 @@
       "category": "baby",
       "weight": 0.79,
       "brand": "Notello"
-    },
-    {
-      "name": "s",
-      "price": "1",
-      "amount": "1",
-      "img": "1",
-      "description": "1",
-      "category": "1",
-      "weight": "1",
-      "brand": "1",
-      "id": 7
     }
   ]
 }

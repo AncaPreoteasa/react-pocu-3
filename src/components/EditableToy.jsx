@@ -1,10 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import DeleteDialog from "../features/DeleteDialog";
 
 import styles from "./EditableToy.module.css";
 
 export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const {
     register,
@@ -24,6 +26,20 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
     data.id = toy.id;
     onSubmitEditedToy(data);
     setIsEditing(false);
+  };
+
+  const handleDeleteClick = () => {
+    // Open the delete confirmation dialog
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    onDeleteToy();
+    setDeleteDialogOpen(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteDialogOpen(false);
   };
 
   return isEditing ? (
@@ -117,8 +133,13 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
         <div>{toy.price}﹩</div>
         <img src={toy.img} className={styles.img}></img>
       </li>
-      <button onClick={onDeleteToy}>Delete</button>
+      <button onClick={handleDeleteClick}>Delete</button>
       <button onClick={makeToyEditable}>Edit</button>
+      <DeleteDialog
+        open={isDeleteDialogOpen}
+        onClose={handleDeleteCancel}
+        onConfirm={handleDeleteConfirm}
+      />
     </>
   );
 }
