@@ -5,6 +5,8 @@
 }
 
 .readMoreContainer {
+  margin-top: 40px;
+  margin-right: 10px;
   margin-left: 1em;
   padding: 1em;
   background-color: var(--background-light);
