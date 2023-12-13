@@ -94,7 +94,15 @@ export function Admin() {
           </div>
           <div>
             <label>Category</label>
-            <input type="text" name="category" {...register("category")} />
+            <select
+              className={styles.categorySelect}
+              name="category"
+              {...register("category")}
+            >
+              <option value="girls">Girls</option>
+              <option value="boys">Boys</option>
+              <option value="unisex">Unisex</option>
+            </select>
           </div>
           <div>
             <label>Weight</label>
