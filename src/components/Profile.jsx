@@ -1,8 +1,6 @@
 import styles from "./Profile.module.css";
-import { Email } from "@mui/icons-material";
 import { useAuthContext } from "../features/Auth/AuthContext";
 import { useForm } from "react-hook-form";
-import "./Forms.css";
 
 export function Profile() {
   const { user, updateUserProfile } = useAuthContext();
@@ -11,20 +9,17 @@ export function Profile() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(profileSchema) });
 
   const onSubmit = (userData) => {
     updateUserProfile(userData);
   };
 
   return (
-    <>
+    <div className={styles.profileContainer}>
       <h1>Your profile</h1>
-      <form className="brandForm" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">
-          <Email />
-          Email
-        </label>
+      <form className={styles.brandForm} onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="email">Email ✉️</label>
         <input
           type="email"
           name="email"
@@ -32,7 +27,7 @@ export function Profile() {
           defaultValue={user.email}
           {...register("email")}
         ></input>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password 🗝️</label>
         <input
           type="password"
           name="password"
@@ -56,8 +51,8 @@ export function Profile() {
           defaultValue={user.lastName}
           {...register("lastName")}
         ></input>
-        <button type="submit">Submit</button>
+        <button type="submit">Submit changes</button>
       </form>
-    </>
+    </div>
   );
 }

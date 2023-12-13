@@ -44,9 +44,12 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
 
   return isEditing ? (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
-        <div>
-          <label>Name</label>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.editableToysContainer}
+      >
+        <div className={styles.editableToy}>
+          <label>Name </label>
           <input
             type="text"
             name="name"
@@ -54,8 +57,8 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             {...register("name")}
           />
         </div>
-        <div>
-          <label>Price</label>
+        <div className={styles.editableToy}>
+          <label>Price </label>
           <input
             type="number"
             name="price"
@@ -63,8 +66,8 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             {...register("price")}
           />
         </div>
-        <div>
-          <label>Amount</label>
+        <div className={styles.editableToy}>
+          <label>Amount </label>
           <input
             type="number"
             name="amount"
@@ -72,8 +75,8 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             {...register("amount")}
           />
         </div>
-        <div>
-          <label>Image</label>
+        <div className={styles.editableToy}>
+          <label>Image </label>
           <input
             type="text"
             name="img"
@@ -82,8 +85,8 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             className={styles.img}
           />
         </div>
-        <div>
-          <label>Description</label>
+        <div className={styles.editableToy}>
+          <label>Description </label>
           <input
             type="text"
             name="description"
@@ -91,8 +94,8 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             {...register("description")}
           />
         </div>
-        <div>
-          <label>Category</label>
+        <div className={styles.editableToy}>
+          <label>Category </label>
           <input
             type="text"
             name="category"
@@ -100,8 +103,8 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             {...register("category")}
           />
         </div>
-        <div>
-          <label>Weight</label>
+        <div className={styles.editableToy}>
+          <label>Weight </label>
           <input
             type="number"
             name="weight"
@@ -109,8 +112,8 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             {...register("weight")}
           />
         </div>
-        <div>
-          <label>Brand</label>
+        <div className={styles.editableToy}>
+          <label>Brand </label>
           <input
             type="text"
             name="brand"
@@ -120,26 +123,37 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
         </div>
         <div>
           <label></label>
-          <button type="submit">Submit</button>
-          <button onClick={handleCancelEdit}>Cancel</button>
+          <button className={styles.btn} type="submit">
+            Submit
+          </button>
+          <button className={styles.btn} onClick={handleCancelEdit}>
+            Cancel
+          </button>
         </div>
       </form>
     </div>
   ) : (
     <>
-      <li className={styles.editableToy}>
-        <div>{toy.description}</div>
-        <div>{toy.name}</div>
-        <div>{toy.price}﹩</div>
-        <img src={toy.img} className={styles.img}></img>
-      </li>
-      <button onClick={handleDeleteClick}>Delete</button>
-      <button onClick={makeToyEditable}>Edit</button>
-      <DeleteDialog
-        open={isDeleteDialogOpen}
-        onClose={handleDeleteCancel}
-        onConfirm={handleDeleteConfirm}
-      />
+      <h2>Edit your toy 👇🏼</h2>
+      <div className={styles.editableToy}>
+        <li>
+          <div>{toy.description}</div>
+          <div>{toy.name}</div>
+          <div>{toy.price}﹩</div>
+          <img src={toy.img} className={styles.img}></img>
+        </li>
+        <button className={styles.btn} onClick={handleDeleteClick}>
+          Delete
+        </button>
+        <button className={styles.btn} onClick={makeToyEditable}>
+          Edit
+        </button>
+        <DeleteDialog
+          open={isDeleteDialogOpen}
+          onClose={handleDeleteCancel}
+          onConfirm={handleDeleteConfirm}
+        />
+      </div>
     </>
   );
 }

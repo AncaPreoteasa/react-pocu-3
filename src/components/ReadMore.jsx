@@ -1,12 +1,15 @@
+import React, { useState } from "react";
 import { useAuthContext } from "../features/Auth/AuthContext";
 import styles from "./ReadMore.module.css";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
+import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 
 export function ReadMore({ toy, onClose }) {
   const { user, accessToken } = useAuthContext();
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   function patchCart(cart) {
     fetch(`http://localhost:3000/carts/${cart.id}`, {
@@ -41,8 +44,13 @@ export function ReadMore({ toy, onClose }) {
         }
 
         patchCart(cart);
+        setDialogOpen(true);
       });
   }
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
 
   function handleRemoveFromCart() {
     fetch(`http://localhost:3000/carts?userId=${user.id}`, {
@@ -90,6 +98,15 @@ export function ReadMore({ toy, onClose }) {
             </button>
           </div>
         )}
+        <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+          <DialogTitle>Item Added to Cart</DialogTitle>
+          <DialogContent>
+            <p>{toy.name} has been added to your cart! 🫶🏼</p>
+            <Button onClick={handleCloseDialog} color="primary">
+              OK
+            </Button>
+          </DialogContent>
+        </Dialog>
       </div>
     </>
   );

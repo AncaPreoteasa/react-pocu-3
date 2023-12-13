@@ -61,8 +61,8 @@ export function Admin() {
   }
 
   return (
-    <>
-      <h1>Add toy</h1>
+    <div className={styles.adminContainer}>
+      <h1>Add your toy 👇🏼</h1>
       <div>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -120,6 +120,6 @@ export function Admin() {
           />
         ))}
       </ul>
-    </>
+    </div>
   );
 }

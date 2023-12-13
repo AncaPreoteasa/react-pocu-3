@@ -1,12 +1,62 @@
+.adminContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .formContainer div {
-  margin: 0.5em;
+  margin: 10px 0;
 }
 
 .formContainer {
   text-align: left;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .editableToysContainer {
   text-align: left;
   list-style-type: none;
+}
+
+.formContainer label {
+  display: block;
+  font-weight: bold;
+}
+
+.formContainer input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.formContainer button {
+  padding: 10px;
+  background-color: var(--primary);
+  color: var(--text-on-dark);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .formContainer {
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .adminContainer {
+    padding: 10px;
+  }
+
+  .formContainer input {
+    font-size: 14px;
+  }
 }

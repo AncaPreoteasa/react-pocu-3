@@ -41,14 +41,14 @@ body {
   justify-self: end;
 }
 
-.brandForm input:not([type='checkbox'], [type='radio']) {
+.brandForm input:not([type="checkbox"], [type="radio"]) {
   padding: 0.5rem 0.5rem;
 
   border: 1px solid var(--primary-dark);
   border-radius: 3px;
 }
 
-.brandForm .passwordInput {
+.passwordInput {
   position: relative;
 
   & > input {
@@ -58,7 +58,7 @@ body {
   & > button {
     position: absolute;
     right: 0;
-    top: 0.3rem;
+    top: 0.8rem;
 
     background: transparent;
     border: none;
@@ -97,6 +97,10 @@ body {
     background-color: color-mix(in srgb, var(--primary) 40%, white 60%);
     cursor: not-allowed;
   }
+}
+
+.btn:hover {
+  background-color: var(--primary-light);
 }
 
 .hidden {

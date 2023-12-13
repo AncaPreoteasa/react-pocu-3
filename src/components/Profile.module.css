@@ -1,0 +1,31 @@
+.profileContainer {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.brandForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandForm label {
+  margin-bottom: 8px;
+}
+
+.brandForm input {
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.brandForm button {
+  background-color: var(--primary);
+  color: var(--text-on-dark);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.brandForm button:hover {
+  background-color: var(--primary-light);
+}

@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { PasswordInput } from "../../components/PasswordInput/PasswordInput";
 import { useAuthContext } from "./AuthContext";
 
+import styles from "./Auth.module.css";
+
 const commonSchema = {
   email: string()
     .email("The email address is not valid")
@@ -97,23 +99,43 @@ export function Auth() {
   return (
     <>
       <h1>{isRegister ? "Register" : "Login"}</h1>
-      <form className="brandForm" noValidate onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" {...register("email")} />
+      <form
+        className={styles.brandForm}
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <label className={styles.label} htmlFor="email">
+          Email
+        </label>
+        <input
+          className={styles.input}
+          type="email"
+          id="email"
+          {...register("email")}
+        />
         {errors.email && (
           <p className="secondColumn fieldError">{errors.email.message}</p>
         )}
 
-        <label htmlFor="password">Password</label>
-        <PasswordInput name="password" {...register("password")} />
+        <label className={styles.label} htmlFor="password">
+          Password
+        </label>
+        <PasswordInput
+          className={styles.input}
+          name="password"
+          {...register("password")}
+        />
         {errors.password && (
           <p className="secondColumn fieldError">{errors.password.message}</p>
         )}
 
         {isRegister && (
           <>
-            <label htmlFor="retypePassword">Retype Password</label>
+            <label className={styles.label} htmlFor="retypePassword">
+              Retype Password
+            </label>
             <PasswordInput
+              className={styles.input}
               name="retypePassword"
               {...register("retypePassword")}
             />
@@ -123,16 +145,30 @@ export function Auth() {
               </p>
             )}
 
-            <label htmlFor="firstName">First Name</label>
-            <input type="text" id="firstName" {...register("firstName")} />
+            <label className={styles.label} htmlFor="firstName">
+              First Name
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              id="firstName"
+              {...register("firstName")}
+            />
             {errors.firstName && (
               <p className="secondColumn fieldError">
                 {errors.firstName.message}
               </p>
             )}
 
-            <label htmlFor="lastName">Last Name</label>
-            <input type="text" id="lastName" {...register("lastName")} />
+            <label className={styles.label} htmlFor="lastName">
+              Last Name
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              id="lastName"
+              {...register("lastName")}
+            />
             {errors.lastName && (
               <p className="secondColumn fieldError">
                 {errors.lastName.message}

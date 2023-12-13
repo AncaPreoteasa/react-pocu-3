@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useAuthContext } from "../features/Auth/AuthContext";
 import styles from "./ToysListItem.module.css";
 import clsx from "clsx";
@@ -5,9 +6,11 @@ import clsx from "clsx";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 
 export function ToysListItem({ toy, onReadMore }) {
-  const { user, accessToken } = useAuthContext();
+  const { user, accessToken, notificationCount } = useAuthContext();
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   function patchCart(cart) {
     fetch(`http://localhost:3000/carts/${cart.id}`, {
@@ -42,8 +45,13 @@ export function ToysListItem({ toy, onReadMore }) {
         }
 
         patchCart(cart);
+        setDialogOpen(true);
       });
   }
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
 
   function handleRemoveFromCart() {
     fetch(`http://localhost:3000/carts?userId=${user.id}`, {
@@ -79,6 +87,15 @@ export function ToysListItem({ toy, onReadMore }) {
           </button>
         </>
       )}
+      <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+        <DialogTitle>Item Added to Cart</DialogTitle>
+        <DialogContent>
+          <p>{toy.name} has been added to your cart! 🫶🏼</p>
+          <Button onClick={handleCloseDialog} color="primary">
+            OK
+          </Button>
+        </DialogContent>
+      </Dialog>
     </li>
   );
 }

@@ -2,19 +2,31 @@
   "users": [
     {
       "email": "p@p.com",
-      "password": "$2a$10$8d64xvXbAymfkYND.KOa6eUepZXltnv9zIGt3gycVsByxosf42WZW",
+      "password": "$2a$10$wwrNTtzZjljm3hP1n1QKI.X0.aeOXuCX57GYulpooi.jHnt8wKUOC",
       "firstName": "Paul",
-      "lastName": "Negoescu",
-      "id": 1,
-      "isAdmin": true
+      "lastName": "Negoesc",
+      "id": 1
     },
     {
       "email": "a@a.com",
       "password": "$2a$10$l.ErmfRp81rajq.mR11QRO/IxV.Lv9sOrgITLwOYBi2exILdQ8xM2",
       "firstName": "Paul",
       "lastName": "Negoescu",
-      "id": 2,
-      "isAdmin": true
+      "id": 2
+    },
+    {
+      "email": "m@m",
+      "password": "$2a$10$NA1obuH.z3SPhJ7KYEMngOWtc8/WMZfs24Mzlm9fyJRFzkRLgjo2m",
+      "firstName": "Marina",
+      "lastName": "Marina",
+      "id": 3
+    },
+    {
+      "email": "g@g",
+      "password": "$2a$10$bBvN4rvbFrsIaxMRZBpCKe1VLBXN3C.BGluDgE3YZXQ0TdWQAHL.G",
+      "firstName": "Gabriel",
+      "lastName": "Gabriel",
+      "id": 4
     }
   ],
   "carts": [
@@ -23,16 +35,12 @@
       "userId": 1,
       "items": [
         {
-          "toyId": 5,
-          "quantity": 5
+          "toyId": 3,
+          "quantity": 3
         },
         {
           "toyId": 1,
           "quantity": 1
-        },
-        {
-          "toyId": 6,
-          "quantity": 3
         }
       ]
     },
@@ -43,14 +51,50 @@
         {
           "toyId": 2,
           "quantity": 1
+        },
+        {
+          "toyId": 1,
+          "quantity": 3
+        },
+        {
+          "toyId": 3,
+          "quantity": 1
         }
       ]
+    },
+    {
+      "userId": 3,
+      "items": [
+        {
+          "toyId": 1,
+          "quantity": 2
+        },
+        {
+          "toyId": 3,
+          "quantity": 4
+        },
+        {
+          "toyId": 4,
+          "quantity": 2
+        }
+      ],
+      "id": 3
+    },
+    {
+      "userId": 3,
+      "items": [],
+      "id": 4
+    },
+    {
+      "userId": 4,
+      "items": [],
+      "id": 5
     }
   ],
   "toys": [
     {
       "name": "doll",
-      "price": "5000",
+      "price": "500",
       "amount": "1000",
       "img": "/doll.jpeg",
       "description": "Barbie doll, 20 cm",
