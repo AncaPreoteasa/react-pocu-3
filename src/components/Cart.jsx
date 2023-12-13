@@ -109,13 +109,28 @@ export function Cart() {
       });
   }
 
+  function calculateTotalPrice(cartItems) {
+    let total = 0;
+    if (cartItems && toys) {
+      for (let cartItem of cartItems) {
+        let toyId = cartItem.toyId;
+        for (let toy of toys) {
+          if (toy.id === toyId) {
+            total += toy.price * cartItem.quantity;
+          }
+        }
+      }
+    }
+    return total;
+  }
+
   return (
-    <>
+    <div>
       {isLoading ? (
         <Loader />
       ) : (
-        <>
-          <h1>Your cart</h1>
+        <div className={styles.cartContainer}>
+          <h1>Your cart 🛒</h1>
           <div className={styles.allToysContainer}>
             {cart.items?.map((cartItem) => {
               let currentToy = getToyWithRightID(cartItem.toyId);
@@ -126,25 +141,38 @@ export function Cart() {
                       className={styles.imgToysCart}
                       src={currentToy.img}
                     ></img>
-                    <div>Description: {currentToy.description}</div>
-                    <div>Name: {currentToy.name}</div>
-                    <div>Price: {currentToy.price}﹩</div>
-                    <div>Quantity: {cartItem.quantity}</div>
-                    <button onClick={() => handleAddMore(currentToy.id)}>
-                      +
-                    </button>
-                    <button onClick={() => handleRemoveOne(currentToy.id)}>
-                      -
-                    </button>
+                    <div className={styles.toyDetails}>
+                      <div>Description: {currentToy.description}</div>
+                      <div>Name: {currentToy.name}</div>
+                      <div>Price: {currentToy.price}﹩</div>
+                      <div>Quantity: {cartItem.quantity}</div>
+                      <div className={styles.quantityButtons}></div>
+                      <button
+                        className={styles.quantityButton}
+                        onClick={() => handleAddMore(currentToy.id)}
+                      >
+                        +
+                      </button>
+                      <button
+                        className={styles.quantityButton}
+                        onClick={() => handleRemoveOne(currentToy.id)}
+                      >
+                        -
+                      </button>
+                    </div>
                   </div>
                 );
               } else {
                 return null;
               }
             })}
+
+            <div className={styles.totalPrice}>
+              Total Price: {calculateTotalPrice(cart.items)}﹩
+            </div>
           </div>
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 }
