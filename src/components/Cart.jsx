@@ -142,10 +142,18 @@ export function Cart() {
                       src={currentToy.img}
                     ></img>
                     <div className={styles.toyDetails}>
-                      <div>Description: {currentToy.description}</div>
-                      <div>Name: {currentToy.name}</div>
-                      <div>Price: {currentToy.price}﹩</div>
-                      <div>Quantity: {cartItem.quantity}</div>
+                      <div>
+                        <strong>Name:</strong> {currentToy.name}
+                      </div>
+                      <div>
+                        <strong>Description:</strong> {currentToy.description}
+                      </div>
+                      <div>
+                        <strong>Price:</strong> {currentToy.price}﹩
+                      </div>
+                      <div>
+                        <strong>Quantity:</strong> {cartItem.quantity}
+                      </div>
                       <div className={styles.quantityButtons}></div>
                       <button
                         className={styles.quantityButton}

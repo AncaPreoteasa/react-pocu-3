@@ -1,4 +1,4 @@
-.container {
+.generalContainer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -75,7 +75,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .container {
+  .generalContainer {
     flex-direction: column;
   }
 
@@ -98,13 +98,6 @@
 @media (min-width: 601px) and (max-width: 1024px) {
   .toysList {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .toysList button {
-    font-size: 0.9em;
-    width: 60%;
   }
 }
 

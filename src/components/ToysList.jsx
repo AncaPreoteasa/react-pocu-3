@@ -50,7 +50,7 @@ export function ToysList() {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className={styles.container}>
+        <div className={styles.generalContainer}>
           <div className={styles.toysListContainer}>
             {filteredToys.length === 0 ? (
               <p className={styles.noToysFound}>

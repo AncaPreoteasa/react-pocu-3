@@ -37,40 +37,46 @@
   }
 }
 
-.btn:hover,
-.btnClose:hover {
+.btn:hover {
   background-color: var(--primary-light);
 }
 
 .btnClose {
-  padding: 0.5rem 1rem;
   background-color: rgb(38, 31, 31);
-  border: none;
-  border-radius: 3px;
-  color: var(--text-on-dark);
-  cursor: pointer;
-
-  &:disabled {
-    background-color: color-mix(in srgb, var(--primary) 40%, white 60%);
-    cursor: not-allowed;
-  }
 }
 
 .btnContainer {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5em;
-  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
 }
 
 .btnContainer .btn {
   width: 50%;
 }
 
-@media (max-width: 900px) {
+.iconButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 1037px) {
   .readMoreContainer {
     position: absolute;
     top: 0;
     background: azure;
+  }
+  .btnContainer .btn {
+    width: 70%;
+  }
+}
+
+@media (max-width: 770px) {
+  .btnContainer .btn {
+    width: 40%;
   }
 }

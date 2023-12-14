@@ -11,6 +11,8 @@ import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 export function ToysListItem({ toy, onReadMore }) {
   const { user, accessToken, notificationCount } = useAuthContext();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [removeFromCartDialogOpen, setRemoveFromCartDialogOpen] =
+    useState(false);
 
   function patchCart(cart) {
     fetch(`http://localhost:3000/carts/${cart.id}`, {
@@ -53,6 +55,10 @@ export function ToysListItem({ toy, onReadMore }) {
     setDialogOpen(false);
   };
 
+  const handleCloseRemoveFromCartDialog = () => {
+    setRemoveFromCartDialogOpen(false);
+  };
+
   function handleRemoveFromCart() {
     fetch(`http://localhost:3000/carts?userId=${user.id}`, {
       headers: {
@@ -65,26 +71,40 @@ export function ToysListItem({ toy, onReadMore }) {
         cart.items = cart.items.filter((item) => item.toyId !== toy.id);
 
         patchCart(cart);
+        setRemoveFromCartDialogOpen(true);
       });
   }
 
   return (
     <li className={clsx({ [styles.outOfStock]: toy.amount === 0 })}>
-      <span>{toy.description}</span>
       <p>{toy.name}</p>
+      <span>{toy.description}</span>
       <span>{toy.price}﹩</span>
       <img className={styles.imgToysList} src={toy.img}></img>
-      <button onClick={onReadMore}>
-        Read More <MenuBookIcon />
-      </button>
+      <div className={styles.btnContainer}>
+        <button onClick={onReadMore}>
+          <MenuBookIcon />
+          Read More
+        </button>
+      </div>
       {toy.amount !== 0 && (
         <>
-          <button onClick={handleAddToCart}>
-            Add to cart <ShoppingCartIcon />
-          </button>
-          <button onClick={handleRemoveFromCart}>
-            Remove from cart <RemoveShoppingCartIcon />
-          </button>
+          <div className={styles.btnContainer}>
+            <button
+              className={`${styles.iconButton} ${styles.btn}`}
+              onClick={handleAddToCart}
+            >
+              <ShoppingCartIcon />
+              Add to cart
+            </button>
+            <button
+              className={`${styles.iconButton} ${styles.btn}`}
+              onClick={handleRemoveFromCart}
+            >
+              <RemoveShoppingCartIcon />
+              Remove from cart
+            </button>
+          </div>
         </>
       )}
       <Dialog open={dialogOpen} onClose={handleCloseDialog}>
@@ -92,6 +112,18 @@ export function ToysListItem({ toy, onReadMore }) {
         <DialogContent>
           <p>{toy.name} has been added to your cart! 🫶🏼</p>
           <Button onClick={handleCloseDialog} color="primary">
+            OK
+          </Button>
+        </DialogContent>
+      </Dialog>
+      <Dialog
+        open={removeFromCartDialogOpen}
+        onClose={handleCloseRemoveFromCartDialog}
+      >
+        <DialogTitle>Toy Removed from Cart</DialogTitle>
+        <DialogContent>
+          <p>{toy.name} has been removed from your cart.</p>
+          <Button onClick={handleCloseRemoveFromCartDialog} color="primary">
             OK
           </Button>
         </DialogContent>

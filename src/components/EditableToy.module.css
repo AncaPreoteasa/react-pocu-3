@@ -24,6 +24,7 @@
   background-color: var(--primary);
   border: 1px solid var(--primary-dark);
   border-radius: 3px;
+  margin-right: 5px;
   color: var(--text-on-dark);
   cursor: pointer;
 
@@ -31,4 +32,30 @@
     background-color: color-mix(in srgb, var(--primary) 40%, white 60%);
     cursor: not-allowed;
   }
+}
+
+.deleteBtn,
+.cancelBtn {
+  padding: 0.5rem 1rem;
+
+  background-color: color-mix(in srgb, var(--secondary-light) 70%, black 30%);
+  border: 1px solid var(--primary-dark);
+  border-radius: 3px;
+  margin-right: 5px;
+  color: var(--text-on-dark);
+  cursor: pointer;
+
+  &:disabled {
+    background-color: color-mix(in srgb, var(--primary) 40%, white 60%);
+    cursor: not-allowed;
+  }
+}
+
+.btn:hover {
+  background-color: var(--primary-light);
+}
+
+.cancelBtn:hover,
+.deleteBtn:hover {
+  background-color: var(--secondary-light);
 }

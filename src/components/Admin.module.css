@@ -1,12 +1,5 @@
-.categorySelect {
-  padding: 4px;
-  margin: 5px;
-  margin-left: 0;
-  margin-top: 2px;
-}
-
 .adminContainer {
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -43,13 +36,24 @@
 }
 
 .formContainer button {
-  padding: 10px;
+  padding: 10px 30px;
   background-color: var(--primary);
   color: var(--text-on-dark);
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+}
+
+.formContainer button:hover {
+  background-color: var(--primary-light);
+}
+
+.categorySelect {
+  padding: 4px;
+  margin: 5px;
+  margin-left: 0;
+  margin-top: 2px;
 }
 
 @media only screen and (max-width: 600px) {

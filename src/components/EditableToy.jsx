@@ -1,18 +1,35 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import DeleteDialog from "../features/DeleteDialog";
+import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { number, object, string } from "yup";
 
+import DeleteDialog from "../features/DeleteDialog";
 import styles from "./EditableToy.module.css";
+
+const schema = object({
+  name: string()
+    .required("Please provide a name")
+    .min(3, "The name needs to be at least 3 characters long"),
+  price: number().required("Please provide a price"),
+  img: string().required("Please provide an URL for the image"),
+  description: string()
+    .required("Please write a description")
+    .min(5, "The description needs to be at least 5 characters long"),
+  amount: number().typeError("Please enter a valid number for the amount."),
+  brand: string().required("Please provide a brand"),
+});
 
 export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schema) });
 
   function makeToyEditable() {
     setIsEditing(true);
@@ -26,10 +43,10 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
     data.id = toy.id;
     onSubmitEditedToy(data);
     setIsEditing(false);
+    setSubmitDialogOpen(true);
   };
 
   const handleDeleteClick = () => {
-    // Open the delete confirmation dialog
     setDeleteDialogOpen(true);
   };
 
@@ -40,6 +57,10 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
 
   const handleDeleteCancel = () => {
     setDeleteDialogOpen(false);
+  };
+
+  const handleCloseSubmitDialog = () => {
+    setSubmitDialogOpen(false);
   };
 
   return isEditing ? (
@@ -56,6 +77,9 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             defaultValue={toy.name}
             {...register("name")}
           />
+          {errors.name && (
+            <p className="secondColumn fieldError">{errors.name.message}</p>
+          )}
         </div>
         <div className={styles.editableToy}>
           <label>Price </label>
@@ -65,6 +89,9 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             defaultValue={toy.price}
             {...register("price")}
           />
+          {errors.price && (
+            <p className="secondColumn fieldError">{errors.price.message}</p>
+          )}
         </div>
         <div className={styles.editableToy}>
           <label>Amount </label>
@@ -74,6 +101,9 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             defaultValue={toy.amount}
             {...register("amount")}
           />
+          {errors.amount && (
+            <p className="secondColumn fieldError">{errors.amount.message}</p>
+          )}
         </div>
         <div className={styles.editableToy}>
           <label>Image </label>
@@ -84,6 +114,9 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             {...register("img")}
             className={styles.img}
           />
+          {errors.img && (
+            <p className="secondColumn fieldError">{errors.img.message}</p>
+          )}
         </div>
         <div className={styles.editableToy}>
           <label>Description </label>
@@ -93,6 +126,11 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             defaultValue={toy.description}
             {...register("description")}
           />
+          {errors.description && (
+            <p className="secondColumn fieldError">
+              {errors.description.message}
+            </p>
+          )}
         </div>
         <div className={styles.editableToy}>
           <label>Category </label>
@@ -106,11 +144,19 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
         <div className={styles.editableToy}>
           <label>Weight </label>
           <input
-            type="number"
+            type="text"
             name="weight"
+            {...register("weight", {
+              pattern: {
+                value: /^[0-9]+(\.[0-9]+)?$/,
+                message: "Please enter a valid number for the weight.",
+              },
+            })}
             defaultValue={toy.weight}
-            {...register("weight")}
           />
+          {errors.weight && (
+            <p className={styles.error}>{errors.weight.message}</p>
+          )}
         </div>
         <div className={styles.editableToy}>
           <label>Brand </label>
@@ -120,29 +166,41 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
             defaultValue={toy.brand}
             {...register("brand")}
           />
+          {errors.brand && (
+            <p className="secondColumn fieldError">{errors.brand.message}</p>
+          )}
         </div>
         <div>
           <label></label>
           <button className={styles.btn} type="submit">
             Submit
           </button>
-          <button className={styles.btn} onClick={handleCancelEdit}>
+          <button className={styles.cancelBtn} onClick={handleCancelEdit}>
             Cancel
           </button>
         </div>
       </form>
+      <Dialog open={submitDialogOpen} onClose={handleCloseSubmitDialog}>
+        <DialogTitle>Toy Submitted</DialogTitle>
+        <DialogContent>
+          <p>{toy.name} has been submitted 🤎</p>
+          <Button onClick={handleCloseSubmitDialog} color="primary">
+            OK
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   ) : (
     <>
       <h2>Edit your toy 👇🏼</h2>
       <div className={styles.editableToy}>
         <li>
-          <div>{toy.description}</div>
           <div>{toy.name}</div>
+          <div>{toy.description}</div>
           <div>{toy.price}﹩</div>
           <img src={toy.img} className={styles.img}></img>
         </li>
-        <button className={styles.btn} onClick={handleDeleteClick}>
+        <button className={styles.deleteBtn} onClick={handleDeleteClick}>
           Delete
         </button>
         <button className={styles.btn} onClick={makeToyEditable}>
