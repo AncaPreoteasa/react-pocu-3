@@ -1,5 +1,7 @@
-import { forwardRef, useState } from 'react';
-import { HiEye, HiEyeSlash } from 'react-icons/hi2';
+import { forwardRef, useState } from "react";
+import { HiEye, HiEyeSlash } from "react-icons/hi2";
+
+import styles from "./PasswordInput.module.css";
 
 export const PasswordInput = forwardRef(MyInput);
 
@@ -11,21 +13,29 @@ function MyInput({ name, ...props }, ref) {
   }
 
   return (
-    <div className="passwordInput">
+    <div className={styles.passwordInput}>
       <input
-        type={isPasswordLegible ? 'text' : 'password'}
+        type={isPasswordLegible ? "text" : "password"}
         id={name}
         ref={ref}
         name={name}
         {...props}
       />
       {!isPasswordLegible && (
-        <button type="button" onClick={togglePasswordInputType}>
+        <button
+          className={styles.btn}
+          type="button"
+          onClick={togglePasswordInputType}
+        >
           <HiEye />
         </button>
       )}
       {isPasswordLegible && (
-        <button type="button" onClick={togglePasswordInputType}>
+        <button
+          className={styles.btn}
+          type="button"
+          onClick={togglePasswordInputType}
+        >
           <HiEyeSlash />
         </button>
       )}

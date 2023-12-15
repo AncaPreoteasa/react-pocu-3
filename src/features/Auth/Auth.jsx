@@ -98,7 +98,7 @@ export function Auth() {
 
   return (
     <>
-      <h1>{isRegister ? "Register" : "Login"}</h1>
+      <h1 className={styles.title}>{isRegister ? "Register" : "Login"}</h1>
       <form
         className={styles.brandForm}
         noValidate
@@ -173,7 +173,7 @@ export function Auth() {
           </>
         )}
 
-        <button type="submit" className="secondColumn btn">
+        <button type="submit" className={styles.btn}>
           {isRegister ? "Register" : "Login"}
         </button>
       </form>

@@ -99,7 +99,9 @@ export function Profile() {
           <p className={styles.fieldError}>{errors.lastName.message}</p>
         )}
 
-        <button type="submit">Submit changes</button>
+        <button type="submit" className={styles.submitBtn}>
+          Submit changes
+        </button>
       </form>
     </div>
   );
