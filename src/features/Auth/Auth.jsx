@@ -114,7 +114,7 @@ export function Auth() {
           {...register("email")}
         />
         {errors.email && (
-          <p className="secondColumn fieldError">{errors.email.message}</p>
+          <p className={styles.fieldError}>{errors.email.message}</p>
         )}
 
         <label className={styles.label} htmlFor="password">
@@ -126,7 +126,7 @@ export function Auth() {
           {...register("password")}
         />
         {errors.password && (
-          <p className="secondColumn fieldError">{errors.password.message}</p>
+          <p className={styles.fieldError}>{errors.password.message}</p>
         )}
 
         {isRegister && (
@@ -140,7 +140,7 @@ export function Auth() {
               {...register("retypePassword")}
             />
             {errors.retypePassword && (
-              <p className="secondColumn fieldError">
+              <p className={styles.fieldError}>
                 {errors.retypePassword.message}
               </p>
             )}
@@ -155,9 +155,7 @@ export function Auth() {
               {...register("firstName")}
             />
             {errors.firstName && (
-              <p className="secondColumn fieldError">
-                {errors.firstName.message}
-              </p>
+              <p className={styles.fieldError}>{errors.firstName.message}</p>
             )}
 
             <label className={styles.label} htmlFor="lastName">
@@ -170,9 +168,7 @@ export function Auth() {
               {...register("lastName")}
             />
             {errors.lastName && (
-              <p className="secondColumn fieldError">
-                {errors.lastName.message}
-              </p>
+              <p className={styles.fieldError}>{errors.lastName.message}</p>
             )}
           </>
         )}

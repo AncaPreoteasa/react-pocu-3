@@ -26,3 +26,8 @@ h1 {
   border-radius: 5px;
   box-sizing: border-box;
 }
+
+.fieldError {
+  color: var(--error-color);
+  margin-top: 0;
+}

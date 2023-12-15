@@ -71,3 +71,8 @@
     font-size: 14px;
   }
 }
+
+.fieldError {
+  color: var(--error-color);
+  margin-top: 0;
+}

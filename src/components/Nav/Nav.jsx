@@ -73,10 +73,10 @@ export function Nav() {
                 </BrandNavLink>
               </span>
               <BrandNavLink to="favorite">
-                <FavoriteIcon style={{ color: "white" }} />
+                <FavoriteIcon style={{ color: "white", marginTop: "4" }} />
               </BrandNavLink>
               <BrandNavLink
-                to="/"
+                to="login"
                 className={styles.navLink}
                 onClick={() => logout()}
               >

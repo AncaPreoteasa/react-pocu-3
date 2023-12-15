@@ -13,7 +13,7 @@
 }
 
 .brandForm input {
-  padding: 8px;
+  padding: 15px;
   margin-bottom: 15px;
 }
 
@@ -26,6 +26,13 @@
   border-radius: 4px;
 }
 
-.brandForm button:hover {
-  background-color: var(--primary-light);
+@media (max-width: 600px) {
+  .brandForm {
+    padding: 50px;
+  }
+}
+
+.fieldError {
+  color: var(--error-color);
+  margin-top: 0;
 }

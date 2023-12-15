@@ -6,6 +6,7 @@ import { ToysListItem } from "./ToysListItem";
 import { ReadMore } from "./ReadMore";
 import { SearchBar } from "./SearchBar";
 import { Loader } from "./Loader";
+import Api from "../../features/Api";
 
 export function ToysList() {
   const [toys, setToys] = useState([]);
@@ -15,6 +16,7 @@ export function ToysList() {
   const [isLoading, setIsLoading] = useState(false);
 
   function handleReadMore(toy) {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     setReadMoreToy(toy);
   }
 
@@ -25,13 +27,12 @@ export function ToysList() {
   useEffect(() => {
     async function getToys() {
       setIsLoading(true);
-      const data = await fetch("http://localhost:3000/toys")
-        .then((res) => res.json())
-        .then((data) => {
-          setToys(data);
-          setFilteredToys(data);
-          setReadMoreToy(data[0]);
-        });
+
+      const data = await new Api().getToys().then((data) => {
+        setToys(data);
+        setFilteredToys(data);
+        setReadMoreToy(data[0]);
+      });
       setIsLoading(false);
     }
     getToys();

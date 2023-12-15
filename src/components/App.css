@@ -22,32 +22,6 @@ body {
   font-size: 1.6rem;
 }
 
-.brandForm {
-  display: grid;
-  gap: 0.5rem;
-  grid-template-columns: 150px 1fr;
-}
-
-.brandForm .secondColumn {
-  grid-column-start: 2;
-}
-
-.brandForm .btn {
-  justify-self: start;
-}
-
-.brandForm label {
-  align-self: center;
-  justify-self: end;
-}
-
-.brandForm input:not([type="checkbox"], [type="radio"]) {
-  padding: 0.5rem 0.5rem;
-
-  border: 1px solid var(--primary-dark);
-  border-radius: 3px;
-}
-
 .passwordInput {
   position: relative;
 
@@ -63,25 +37,14 @@ body {
     background: transparent;
     border: none;
     cursor: pointer;
+    color: var(--primary-dark);
     font-size: 1.8rem;
   }
 }
 
-.brandForm .fieldError {
+.fieldError {
   color: var(--error-color);
   margin: 0;
-}
-
-.brandForm input:has(+ .fieldError),
-.brandForm .passwordInput:has(+ .fieldError) > input {
-  border-color: var(--error-color);
-  color: var(--error-color);
-  outline-color: var(--error-color);
-}
-
-.brandForm label:has(+ input + .fieldError),
-.brandForm label:has(+ .passwordInput + .fieldError) {
-  color: var(--error-color);
 }
 
 .btn {
@@ -101,8 +64,4 @@ body {
 
 .btn:hover {
   background-color: var(--primary-light);
-}
-
-.hidden {
-  display: none !important;
 }

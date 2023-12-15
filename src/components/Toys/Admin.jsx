@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
+
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { number, object, string } from "yup";
@@ -99,28 +100,28 @@ export function Admin() {
             <label>Name</label>
             <input type="text" name="name" {...register("name")} />
             {errors.name && (
-              <p className="secondColumn fieldError">{errors.name.message}</p>
+              <p className={styles.fieldError}>{errors.name.message}</p>
             )}
           </div>
           <div>
             <label>Price</label>
             <input type="number" name="price" {...register("price")} />
             {errors.price && (
-              <p className="secondColumn fieldError">{errors.price.message}</p>
+              <p className={styles.fieldError}>{errors.price.message}</p>
             )}
           </div>
           <div>
             <label>Amount</label>
             <input type="number" name="amount" {...register("amount")} />
             {errors.amount && (
-              <p className="secondColumn fieldError">{errors.amount.message}</p>
+              <p className={styles.fieldError}>{errors.amount.message}</p>
             )}
           </div>
           <div>
             <label>Image</label>
             <input type="text" name="img" {...register("img")} />
             {errors.img && (
-              <p className="secondColumn fieldError">{errors.img.message}</p>
+              <p className={styles.fieldError}>{errors.img.message}</p>
             )}
           </div>
           <div>
@@ -131,9 +132,7 @@ export function Admin() {
               {...register("description")}
             />
             {errors.description && (
-              <p className="secondColumn fieldError">
-                {errors.description.message}
-              </p>
+              <p className={styles.fieldError}>{errors.description.message}</p>
             )}
           </div>
           <div>
@@ -169,7 +168,7 @@ export function Admin() {
             <label>Brand</label>
             <input type="text" name="brand" {...register("brand")} />
             {errors.brand && (
-              <p className="secondColumn fieldError">{errors.brand.message}</p>
+              <p className={styles.fieldError}>{errors.brand.message}</p>
             )}
           </div>
           <div>

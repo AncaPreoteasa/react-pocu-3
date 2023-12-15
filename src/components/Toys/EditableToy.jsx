@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { number, object, string } from "yup";
 
-import DeleteDialog from "../features/DeleteDialog";
+import DeleteDialog from "../../features/DeleteDialog";
 import styles from "./EditableToy.module.css";
 
 const schema = object({
@@ -24,7 +23,6 @@ export function EditableToy({
   toy,
   onDeleteToy,
   onSubmitEditedToy,
-  submitDialogOpen,
   setSubmitDialogOpen = { setSubmitDialogOpen },
 }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -78,7 +76,7 @@ export function EditableToy({
             {...register("name")}
           />
           {errors.name && (
-            <p className="secondColumn fieldError">{errors.name.message}</p>
+            <p className={styles.fieldError}>{errors.name.message}</p>
           )}
         </div>
         <div className={styles.editableToy}>
@@ -90,7 +88,7 @@ export function EditableToy({
             {...register("price")}
           />
           {errors.price && (
-            <p className="secondColumn fieldError">{errors.price.message}</p>
+            <p className={styles.fieldError}>{errors.price.message}</p>
           )}
         </div>
         <div className={styles.editableToy}>
@@ -102,7 +100,7 @@ export function EditableToy({
             {...register("amount")}
           />
           {errors.amount && (
-            <p className="secondColumn fieldError">{errors.amount.message}</p>
+            <p className={styles.fieldError}>{errors.amount.message}</p>
           )}
         </div>
         <div className={styles.editableToy}>
@@ -115,7 +113,7 @@ export function EditableToy({
             className={styles.img}
           />
           {errors.img && (
-            <p className="secondColumn fieldError">{errors.img.message}</p>
+            <p className={styles.fieldError}>{errors.img.message}</p>
           )}
         </div>
         <div className={styles.editableToy}>
@@ -127,9 +125,7 @@ export function EditableToy({
             {...register("description")}
           />
           {errors.description && (
-            <p className="secondColumn fieldError">
-              {errors.description.message}
-            </p>
+            <p className={styles.fieldError}>{errors.description.message}</p>
           )}
         </div>
         <div className={styles.editableToy}>
@@ -167,7 +163,7 @@ export function EditableToy({
             {...register("brand")}
           />
           {errors.brand && (
-            <p className="secondColumn fieldError">{errors.brand.message}</p>
+            <p className={styles.fieldError}>{errors.brand.message}</p>
           )}
         </div>
         <div>

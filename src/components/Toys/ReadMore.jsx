@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { useAuthContext } from "../features/Auth/AuthContext";
-import styles from "./ToysListItem.module.css";
-import clsx from "clsx";
 
+import { useAuthContext } from "../../features/Auth/AuthContext";
+import styles from "./ReadMore.module.css";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
+import CloseIcon from "@mui/icons-material/Close";
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 
-export function ToysListItem({ toy, onReadMore }) {
-  const { user, accessToken, notificationCount } = useAuthContext();
+export function ReadMore({ toy, onClose }) {
+  const { user, accessToken } = useAuthContext();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [removeFromCartDialogOpen, setRemoveFromCartDialogOpen] =
     useState(false);
@@ -76,58 +75,70 @@ export function ToysListItem({ toy, onReadMore }) {
   }
 
   return (
-    <li className={clsx({ [styles.outOfStock]: toy.amount === 0 })}>
-      <p>{toy.name}</p>
-      <span>{toy.description}</span>
-      <span>{toy.price}﹩</span>
-      <img className={styles.imgToysList} src={toy.img}></img>
-      <div className={styles.btnContainer}>
-        <button onClick={onReadMore} className={styles.iconButton}>
-          <MenuBookIcon className={styles.icon} />
-          Read More
+    <>
+      <div className={styles.readMoreContainer}>
+        <button
+          className={`${styles.btn} ${styles.btnClose}`}
+          onClick={onClose}
+        >
+          <CloseIcon />
         </button>
-      </div>
-      {toy.amount !== 0 && (
-        <>
+        <h2>{toy.name}</h2>
+        <img className={styles.imgToy} src={toy.img}></img>
+        <h3>{toy.description}</h3>
+        <p>
+          <strong>Price</strong> : {toy.price}$
+        </p>
+        <p>
+          <strong>Weight</strong>: {toy.weight} kg
+        </p>
+        <p>
+          <strong>Brand </strong> : {toy.brand}
+        </p>
+        <h4>{toy.amount !== 0 ? "In Stock" : "Not in Stock"}</h4>
+        <h4>
+          {toy.amount < 4 ? `We have ${toy.amount} left` : "Ready to order?"}
+        </h4>
+        {toy.amount !== 0 && (
           <div className={styles.btnContainer}>
             <button
               className={`${styles.iconButton} ${styles.btn}`}
               onClick={handleAddToCart}
             >
-              <ShoppingCartIcon className={styles.icon} />
+              <ShoppingCartIcon />
               Add to cart
             </button>
             <button
               className={`${styles.iconButton} ${styles.btn}`}
               onClick={handleRemoveFromCart}
             >
-              <RemoveShoppingCartIcon className={styles.icon} />
+              <RemoveShoppingCartIcon />
               Remove from cart
             </button>
           </div>
-        </>
-      )}
-      <Dialog open={dialogOpen} onClose={handleCloseDialog}>
-        <DialogTitle>Item Added to Cart</DialogTitle>
-        <DialogContent>
-          <p>{toy.name} has been added to your cart! 🫶🏼</p>
-          <Button onClick={handleCloseDialog} color="primary">
-            OK
-          </Button>
-        </DialogContent>
-      </Dialog>
-      <Dialog
-        open={removeFromCartDialogOpen}
-        onClose={handleCloseRemoveFromCartDialog}
-      >
-        <DialogTitle>Toy Removed from Cart</DialogTitle>
-        <DialogContent>
-          <p>{toy.name} has been removed from your cart.</p>
-          <Button onClick={handleCloseRemoveFromCartDialog} color="primary">
-            OK
-          </Button>
-        </DialogContent>
-      </Dialog>
-    </li>
+        )}
+        <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+          <DialogTitle>Item Added to Cart</DialogTitle>
+          <DialogContent>
+            <p>{toy.name} has been added to your cart! 🫶🏼</p>
+            <Button onClick={handleCloseDialog} color="primary">
+              OK
+            </Button>
+          </DialogContent>
+        </Dialog>
+        <Dialog
+          open={removeFromCartDialogOpen}
+          onClose={handleCloseRemoveFromCartDialog}
+        >
+          <DialogTitle>Toy Removed from Cart</DialogTitle>
+          <DialogContent>
+            <p>{toy.name} has been removed from your cart.</p>
+            <Button onClick={handleCloseRemoveFromCartDialog} color="primary">
+              OK
+            </Button>
+          </DialogContent>
+        </Dialog>
+      </div>
+    </>
   );
 }

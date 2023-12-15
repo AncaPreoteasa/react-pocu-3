@@ -59,3 +59,8 @@
 .deleteBtn:hover {
   background-color: var(--secondary-light);
 }
+
+.fieldError {
+  color: var(--error-color);
+  margin-top: 0;
+}

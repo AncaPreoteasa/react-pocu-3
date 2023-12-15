@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { useAuthContext } from "../features/Auth/AuthContext";
+import { useAuthContext } from "../../features/Auth/AuthContext";
 import { Loader } from "./Loader";
 
 import styles from "./Cart.module.css";

@@ -1,9 +1,10 @@
-import styles from "./Profile.module.css";
-import { useAuthContext } from "../features/Auth/AuthContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, ref, string } from "yup";
-import { PasswordInput } from "./PasswordInput/PasswordInput";
+
+import { useAuthContext } from "../../features/Auth/AuthContext";
+import { PasswordInput } from "../PasswordInput/PasswordInput";
+import styles from "./Profile.module.css";
 
 const schema = object({
   email: string()
@@ -48,7 +49,7 @@ export function Profile() {
           {...register("email")}
         ></input>
         {errors.email && (
-          <p className="secondColumn fieldError">{errors.email.message}</p>
+          <p className={styles.fieldError}>{errors.email.message}</p>
         )}
 
         <label htmlFor="password">Password 🗝️</label>
@@ -59,7 +60,7 @@ export function Profile() {
           {...register("password")}
         ></input>
         {errors.password && (
-          <p className="secondColumn fieldError">{errors.password.message}</p>
+          <p className={styles.fieldError}>{errors.password.message}</p>
         )}
 
         <label className={styles.label} htmlFor="retypePassword">
@@ -71,9 +72,7 @@ export function Profile() {
           {...register("retypePassword")}
         />
         {errors.retypePassword && (
-          <p className="secondColumn fieldError">
-            {errors.retypePassword.message}
-          </p>
+          <p className={styles.fieldError}>{errors.retypePassword.message}</p>
         )}
 
         <label htmlFor="firstName">First Name</label>
@@ -85,7 +84,7 @@ export function Profile() {
           {...register("firstName")}
         ></input>
         {errors.firstName && (
-          <p className="secondColumn fieldError">{errors.firstName.message}</p>
+          <p className={styles.fieldError}>{errors.firstName.message}</p>
         )}
 
         <label htmlFor="lastName">Last Name</label>
@@ -97,7 +96,7 @@ export function Profile() {
           {...register("lastName")}
         ></input>
         {errors.lastName && (
-          <p className="secondColumn fieldError">{errors.lastName.message}</p>
+          <p className={styles.fieldError}>{errors.lastName.message}</p>
         )}
 
         <button type="submit">Submit changes</button>

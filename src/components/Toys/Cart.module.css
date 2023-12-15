@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   justify-items: start;
+  max-width: 50%;
 }
 
 .toyContainer {
@@ -54,9 +55,28 @@
   margin-right: 5px;
 }
 
+.quantityButton:hover {
+  background-color: var(--primary-light);
+}
+
+@media (min-width: 800px) {
+  .imgToysCart {
+    max-width: 30%;
+  }
+}
+
 @media (max-width: 600px) {
   .imgToysCart {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
+    object-fit: cover;
+  }
+
+  .allToysContainer {
+    max-width: 90%;
+  }
+
+  .toyContainer {
+    width: 100%;
   }
 }
