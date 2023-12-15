@@ -43,11 +43,11 @@ export function Nav() {
             showNav ? styles.showNavMobile : styles.hideNavMobile
           }`}
         >
-          <li className={styles.homeWrapper}>
+          <span className={styles.iconWrapper}>
             <BrandNavLink to="/">
               <HomeIcon /> Home
             </BrandNavLink>
-          </li>
+          </span>
           {user === null && (
             <>
               <li className={styles.pushRight}>
@@ -61,14 +61,17 @@ export function Nav() {
           {user && (
             <nav className={styles.pushRight}>
               Welcome,{" "}
-              <BrandNavLink to="profile">
-                {user.firstName}! <PersonIcon />
-              </BrandNavLink>
+              <span className={styles.iconWrapper}>
+                <BrandNavLink to="profile">
+                  {user.firstName}! <PersonIcon />
+                </BrandNavLink>
+              </span>
               <BrandNavLink to="admin">Admin</BrandNavLink>
-              <BrandNavLink to="cart">
-                <span>Cart</span>
-                <ShoppingCartIcon />
-              </BrandNavLink>
+              <span className={styles.iconWrapper}>
+                <BrandNavLink to="cart">
+                  Cart <ShoppingCartIcon />
+                </BrandNavLink>
+              </span>
               <BrandNavLink to="favorite">
                 <FavoriteIcon style={{ color: "white" }} />
               </BrandNavLink>

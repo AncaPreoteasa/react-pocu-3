@@ -54,10 +54,6 @@
   margin-top: 20px;
 }
 
-.btnContainer .btn {
-  width: 50%;
-}
-
 .iconButton {
   display: flex;
   align-items: center;
@@ -77,6 +73,6 @@
 
 @media (max-width: 770px) {
   .btnContainer .btn {
-    width: 40%;
+    width: 50%;
   }
 }

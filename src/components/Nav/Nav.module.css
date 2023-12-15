@@ -54,6 +54,17 @@
   color: white;
 }
 
+.iconWrapper a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconWrapper svg {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
 @media only screen and (max-width: 600px) {
   .navLinks {
     display: none;
@@ -82,10 +93,5 @@
   }
   .mainMenu menu.showNavMobile {
     display: flex !important;
-  }
-
-  .homeWrapper {
-    display: flex;
-    justify-content: center;
   }
 }

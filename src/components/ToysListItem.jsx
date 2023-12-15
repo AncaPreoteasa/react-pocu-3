@@ -82,8 +82,8 @@ export function ToysListItem({ toy, onReadMore }) {
       <span>{toy.price}﹩</span>
       <img className={styles.imgToysList} src={toy.img}></img>
       <div className={styles.btnContainer}>
-        <button onClick={onReadMore}>
-          <MenuBookIcon />
+        <button onClick={onReadMore} className={styles.iconButton}>
+          <MenuBookIcon className={styles.icon} />
           Read More
         </button>
       </div>
@@ -94,14 +94,14 @@ export function ToysListItem({ toy, onReadMore }) {
               className={`${styles.iconButton} ${styles.btn}`}
               onClick={handleAddToCart}
             >
-              <ShoppingCartIcon />
+              <ShoppingCartIcon className={styles.icon} />
               Add to cart
             </button>
             <button
               className={`${styles.iconButton} ${styles.btn}`}
               onClick={handleRemoveFromCart}
             >
-              <RemoveShoppingCartIcon />
+              <RemoveShoppingCartIcon className={styles.icon} />
               Remove from cart
             </button>
           </div>
