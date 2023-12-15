@@ -129,13 +129,17 @@ export function EditableToy({
           )}
         </div>
         <div className={styles.editableToy}>
-          <label>Category </label>
-          <input
-            type="text"
+          <label>Category</label>
+          <select
+            className={styles.categorySelect}
             name="category"
-            defaultValue={toy.category}
             {...register("category")}
-          />
+          >
+            <option value="girls">Girls</option>
+            <option value="boys">Boys</option>
+            <option value="unisex">Unisex</option>
+            <option value="babies">Babies</option>
+          </select>
         </div>
         <div className={styles.editableToy}>
           <label>Weight </label>

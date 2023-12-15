@@ -64,3 +64,8 @@
   color: var(--error-color);
   margin-top: 0;
 }
+
+.categorySelect {
+  padding: 2px;
+  margin: 2px;
+}
