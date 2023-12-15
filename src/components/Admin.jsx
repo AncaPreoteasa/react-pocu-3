@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { number, object, string } from "yup";
+import { toast } from "react-toastify";
 
 import { EditableToy } from "./EditableToy";
 import styles from "./Admin.module.css";
@@ -24,6 +25,7 @@ const schema = object({
 export function Admin() {
   const [toys, setToys] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
 
   const {
     register,
@@ -44,7 +46,7 @@ export function Admin() {
         setIsDialogOpen(true);
       })
       .catch((error) => {
-        alert("Error adding toy. Please check the console for details.");
+        toast.error("Error adding toy. Please check the console for details.");
       });
   };
 
@@ -57,6 +59,7 @@ export function Admin() {
       body: JSON.stringify(updatedToy),
     });
     getToys();
+    setSubmitDialogOpen(true);
   }
 
   async function getToys() {
@@ -78,6 +81,10 @@ export function Admin() {
 
   const handleCloseDialog = () => {
     setIsDialogOpen(false);
+  };
+
+  const handleCloseSubmitDialog = () => {
+    setSubmitDialogOpen(false);
   };
 
   return (
@@ -187,9 +194,20 @@ export function Admin() {
             toy={toy}
             onDeleteToy={() => handleDeleteToy(toy)}
             onSubmitEditedToy={(updatedToy) => handleSubmitToy(updatedToy)}
+            submitDialogOpen={submitDialogOpen}
+            setSubmitDialogOpen={setSubmitDialogOpen}
           />
         ))}
       </ul>
+      <Dialog open={submitDialogOpen} onClose={handleCloseSubmitDialog}>
+        <DialogTitle>Toy Submitted</DialogTitle>
+        <DialogContent>
+          <p>Your toy has been submitted 🤎</p>
+          <Button onClick={handleCloseSubmitDialog} color="primary">
+            OK
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

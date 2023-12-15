@@ -20,10 +20,15 @@ const schema = object({
   brand: string().required("Please provide a brand"),
 });
 
-export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
+export function EditableToy({
+  toy,
+  onDeleteToy,
+  onSubmitEditedToy,
+  submitDialogOpen,
+  setSubmitDialogOpen = { setSubmitDialogOpen },
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
 
   const {
     register,
@@ -43,7 +48,6 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
     data.id = toy.id;
     onSubmitEditedToy(data);
     setIsEditing(false);
-    setSubmitDialogOpen(true);
   };
 
   const handleDeleteClick = () => {
@@ -57,10 +61,6 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
 
   const handleDeleteCancel = () => {
     setDeleteDialogOpen(false);
-  };
-
-  const handleCloseSubmitDialog = () => {
-    setSubmitDialogOpen(false);
   };
 
   return isEditing ? (
@@ -180,15 +180,6 @@ export function EditableToy({ toy, onDeleteToy, onSubmitEditedToy }) {
           </button>
         </div>
       </form>
-      <Dialog open={submitDialogOpen} onClose={handleCloseSubmitDialog}>
-        <DialogTitle>Toy Submitted</DialogTitle>
-        <DialogContent>
-          <p>{toy.name} has been submitted 🤎</p>
-          <Button onClick={handleCloseSubmitDialog} color="primary">
-            OK
-          </Button>
-        </DialogContent>
-      </Dialog>
     </div>
   ) : (
     <>
