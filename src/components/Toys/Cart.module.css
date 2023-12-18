@@ -59,13 +59,13 @@
   background-color: var(--primary-light);
 }
 
-@media (min-width: 800px) {
+@media (min-width: 600px) {
   .imgToysCart {
     max-width: 30%;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1300px) {
   .imgToysCart {
     max-width: 50%;
     height: auto;
