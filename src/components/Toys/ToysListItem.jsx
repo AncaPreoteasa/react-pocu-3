@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { useAuthContext } from "../../features/Auth/AuthContext";
+import Api from "../../features/Api";
 import styles from "./ToysListItem.module.css";
 import clsx from "clsx";
 
@@ -10,29 +11,14 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 
 export function ToysListItem({ toy, onReadMore }) {
-  const { user, accessToken, notificationCount } = useAuthContext();
+  const { user, accessToken } = useAuthContext();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [removeFromCartDialogOpen, setRemoveFromCartDialogOpen] =
     useState(false);
 
-  function patchCart(cart) {
-    fetch(`http://localhost:3000/carts/${cart.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(cart),
-    });
-  }
-
   function handleAddToCart() {
-    fetch(`http://localhost:3000/carts?userId=${user.id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((res) => res.json())
+    Api()
+      .getCart(user, accessToken)
       .then((cartData) => {
         const cart = cartData[0];
         const cartItem = cart?.items?.find(
@@ -47,7 +33,7 @@ export function ToysListItem({ toy, onReadMore }) {
           });
         }
 
-        patchCart(cart);
+        Api().patchCart(cart, accessToken);
         setDialogOpen(true);
       });
   }
@@ -61,17 +47,13 @@ export function ToysListItem({ toy, onReadMore }) {
   };
 
   function handleRemoveFromCart() {
-    fetch(`http://localhost:3000/carts?userId=${user.id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((res) => res.json())
+    Api()
+      .getCart(user, accessToken)
       .then((cartData) => {
         let cart = cartData[0];
         cart.items = cart.items.filter((item) => item.toyId !== toy.id);
 
-        patchCart(cart);
+        Api().patchCart(cart, accessToken);
         setRemoveFromCartDialogOpen(true);
       });
   }

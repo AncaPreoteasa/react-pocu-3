@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { useAuthContext } from "../../features/Auth/AuthContext";
 import { Loader } from "./Loader";
+import Api from "../../features/Api";
 
 import styles from "./Cart.module.css";
 
@@ -12,30 +13,17 @@ export function Cart() {
   const [isLoading, setIsLoading] = useState(false);
 
   async function patchCart(cart) {
-    await fetch(`http://localhost:3000/carts/${cart.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(cart),
-    });
+    await Api().patchCart(cart, accessToken);
   }
 
   useEffect(() => {
     async function getToys() {
       setIsLoading(true);
-      await fetch("http://localhost:3000/toys")
-        .then((res) => res.json())
-        .then((toysData) => {
-          setToys(toysData);
-        });
-      await fetch(`http://localhost:3000/carts?userId=${user.id}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-        .then((res) => res.json())
+
+      const toysData = await new Api().getToys();
+      setToys(toysData);
+      await Api()
+        .getCart(user, accessToken)
         .then((cartData) => {
           let cart = cartData[0];
           if (cart) {
@@ -58,12 +46,8 @@ export function Cart() {
   }
 
   async function handleAddMore(toyId) {
-    await fetch(`http://localhost:3000/carts?userId=${user.id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((res) => res.json())
+    await Api()
+      .getCart(user, accessToken)
       .then((cartData) => {
         const cart = cartData[0];
         const cartItem = cart.items.find(
@@ -84,12 +68,8 @@ export function Cart() {
   }
 
   function handleRemoveOne(toyId) {
-    fetch(`http://localhost:3000/carts?userId=${user.id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((res) => res.json())
+    Api()
+      .getCart(user, accessToken)
       .then((cartData) => {
         const cart = cartData[0];
         const cartItem = cart.items.find(

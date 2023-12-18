@@ -6,6 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
+import Api from "../../features/Api";
 
 export function ReadMore({ toy, onClose }) {
   const { user, accessToken } = useAuthContext();
@@ -13,24 +14,9 @@ export function ReadMore({ toy, onClose }) {
   const [removeFromCartDialogOpen, setRemoveFromCartDialogOpen] =
     useState(false);
 
-  function patchCart(cart) {
-    fetch(`http://localhost:3000/carts/${cart.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(cart),
-    });
-  }
-
   function handleAddToCart() {
-    fetch(`http://localhost:3000/carts?userId=${user.id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((res) => res.json())
+    Api()
+      .getCart(user, accessToken)
       .then((cartData) => {
         const cart = cartData[0];
         const cartItem = cart.items.find(
@@ -45,7 +31,7 @@ export function ReadMore({ toy, onClose }) {
           });
         }
 
-        patchCart(cart);
+        Api().patchCart(cart, accessToken);
         setDialogOpen(true);
       });
   }
@@ -59,17 +45,13 @@ export function ReadMore({ toy, onClose }) {
   };
 
   function handleRemoveFromCart() {
-    fetch(`http://localhost:3000/carts?userId=${user.id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((res) => res.json())
+    Api()
+      .getCart(user, accessToken)
       .then((cartData) => {
         let cart = cartData[0];
         cart.items = cart.items.filter((item) => item.toyId !== toy.id);
 
-        patchCart(cart);
+        Api().patchCart(cart, accessToken);
         setRemoveFromCartDialogOpen(true);
       });
   }

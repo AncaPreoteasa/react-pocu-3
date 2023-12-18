@@ -8,6 +8,7 @@ import { number, object, string } from "yup";
 import { toast } from "react-toastify";
 
 import { EditableToy } from "./EditableToy";
+import Api from "../../features/Api";
 import styles from "./Admin.module.css";
 
 const schema = object({
@@ -35,14 +36,8 @@ export function Admin() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    fetch("http://localhost:3000/toys", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
+    Api()
+      .postToy(data)
       .then((entry) => {
         setIsDialogOpen(true);
       })
@@ -52,21 +47,14 @@ export function Admin() {
   };
 
   async function handleSubmitToy(updatedToy) {
-    await fetch(`http://localhost:3000/toys/${updatedToy.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedToy),
-    });
+    await Api().putToy(updatedToy);
     getToys();
     setSubmitDialogOpen(true);
   }
 
   async function getToys() {
-    await fetch("http://localhost:3000/toys")
-      .then((res) => res.json())
-      .then((data) => setToys(data));
+    const data = await new Api().getToys();
+    setToys(data);
   }
 
   useEffect(() => {
@@ -74,9 +62,7 @@ export function Admin() {
   }, []);
 
   async function handleDeleteToy(toy) {
-    await fetch(`http://localhost:3000/toys/${toy.id}`, {
-      method: "DELETE",
-    });
+    await Api().deleteToy(toy);
     getToys();
   }
 
