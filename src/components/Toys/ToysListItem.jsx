@@ -35,13 +35,13 @@ export function ToysListItem({ toy, onReadMore }) {
       .then((res) => res.json())
       .then((cartData) => {
         const cart = cartData[0];
-        const cartItem = cart.items.find(
+        const cartItem = cart?.items?.find(
           (cartItem) => cartItem.toyId === toy.id
         );
         if (cartItem) {
           cartItem.quantity++;
         } else {
-          cart.items.push({
+          cart?.items?.push({
             toyId: toy.id,
             quantity: 1,
           });
