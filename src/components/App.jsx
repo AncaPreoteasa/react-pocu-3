@@ -7,7 +7,6 @@ import { AuthContextProvider } from "../features/Auth/AuthContext";
 import { ToysList } from "./Toys/ToysList";
 import { Cart } from "./Toys/Cart";
 import { Profile } from "./Toys/Profile";
-import { Favorite } from "./Toys/Favorite";
 import { Admin } from "./Toys/Admin";
 
 import "react-toastify/dist/ReactToastify.min.css";
@@ -22,7 +21,6 @@ export function App() {
           <Route path="/" element={<ToysList />} />
           <Route path="admin" element={<Admin />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="favorite" element={<Favorite />} />
           <Route path="profile" element={<Profile />} />
           <Route path="login" element={<Auth />} />
           <Route path="register" element={<Auth />} />

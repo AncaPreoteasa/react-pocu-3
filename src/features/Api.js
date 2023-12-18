@@ -1,7 +1,6 @@
 import { toast } from "react-toastify";
-import { useAuthContext } from "./Auth/AuthContext";
 
-export default function Api() {
+export default function Api(navigate) {
   function getToys() {
     return fetch("http://localhost:3000/toys").then((res) => res.json());
   }
@@ -14,7 +13,23 @@ export default function Api() {
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(cart),
-    });
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          navigate("/login");
+          return;
+        }
+
+        if (response.status !== 200) {
+          throw new Error();
+        }
+
+        return response;
+      })
+      .catch((e) => {
+        toast.error("Failed to update cart");
+        throw e;
+      });
   }
 
   function getCart(user, accessToken) {
@@ -22,7 +37,22 @@ export default function Api() {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
-    }).then((res) => res.json());
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          navigate("/login");
+          return;
+        }
+
+        if (response.status !== 200) {
+          throw new Error();
+        }
+
+        return response.json();
+      })
+      .catch((e) => {
+        toast.error("Failed to get cart");
+      });
   }
 
   function postToy(toyData) {
@@ -32,7 +62,22 @@ export default function Api() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(toyData),
-    }).then((response) => response.json());
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          navigate("/login");
+          return;
+        }
+
+        if (response.status !== 200) {
+          throw new Error();
+        }
+
+        return response.json();
+      })
+      .catch((e) => {
+        toast.error("Failed to create toy");
+      });
   }
 
   function putToy(updatedToy) {
@@ -42,13 +87,43 @@ export default function Api() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedToy),
-    });
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          navigate("/login");
+          return;
+        }
+
+        if (response.status !== 200) {
+          throw new Error();
+        }
+
+        return response;
+      })
+      .catch((e) => {
+        toast.error("Failed to update toy");
+      });
   }
 
   function deleteToy(toy) {
     return fetch(`http://localhost:3000/toys/${toy.id}`, {
       method: "DELETE",
-    });
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          navigate("/login");
+          return;
+        }
+
+        if (response.status !== 200) {
+          throw new Error();
+        }
+
+        return response;
+      })
+      .catch((e) => {
+        toast.error("Failed to delete toy");
+      });
   }
   return {
     getToys,

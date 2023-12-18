@@ -7,6 +7,7 @@ import { ReadMore } from "./ReadMore";
 import { SearchBar } from "./SearchBar";
 import { Loader } from "./Loader";
 import Api from "../../features/Api";
+import { useNavigate } from "react-router-dom";
 
 export function ToysList() {
   const [toys, setToys] = useState([]);
@@ -14,6 +15,7 @@ export function ToysList() {
   const [filteredToys, setFilteredToys] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   function handleReadMore(toy) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -28,7 +30,7 @@ export function ToysList() {
     async function getToys() {
       setIsLoading(true);
 
-      const data = await new Api().getToys().then((data) => {
+      const data = await new Api(navigate).getToys().then((data) => {
         setToys(data);
         setFilteredToys(data);
         setReadMoreToy(data[0]);

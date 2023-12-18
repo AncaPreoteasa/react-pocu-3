@@ -7,15 +7,17 @@ import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 import Api from "../../features/Api";
+import { useNavigate } from "react-router-dom";
 
 export function ReadMore({ toy, onClose }) {
   const { user, accessToken } = useAuthContext();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [removeFromCartDialogOpen, setRemoveFromCartDialogOpen] =
     useState(false);
+  const navigate = useNavigate();
 
   function handleAddToCart() {
-    Api()
+    Api(navigate)
       .getCart(user, accessToken)
       .then((cartData) => {
         const cart = cartData[0];
@@ -31,7 +33,7 @@ export function ReadMore({ toy, onClose }) {
           });
         }
 
-        Api().patchCart(cart, accessToken);
+        Api(navigate).patchCart(cart, accessToken);
         setDialogOpen(true);
       });
   }
@@ -45,13 +47,13 @@ export function ReadMore({ toy, onClose }) {
   };
 
   function handleRemoveFromCart() {
-    Api()
+    Api(navigate)
       .getCart(user, accessToken)
       .then((cartData) => {
         let cart = cartData[0];
         cart.items = cart.items.filter((item) => item.toyId !== toy.id);
 
-        Api().patchCart(cart, accessToken);
+        Api(navigate).patchCart(cart, accessToken);
         setRemoveFromCartDialogOpen(true);
       });
   }

@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { EditableToy } from "./EditableToy";
 import Api from "../../features/Api";
 import styles from "./Admin.module.css";
+import { useNavigate } from "react-router-dom";
 
 const schema = object({
   name: string()
@@ -28,6 +29,7 @@ export function Admin() {
   const [toys, setToys] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -36,7 +38,7 @@ export function Admin() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    Api()
+    Api(navigate)
       .postToy(data)
       .then((entry) => {
         setIsDialogOpen(true);
@@ -47,13 +49,13 @@ export function Admin() {
   };
 
   async function handleSubmitToy(updatedToy) {
-    await Api().putToy(updatedToy);
+    await Api(navigate).putToy(updatedToy);
     getToys();
     setSubmitDialogOpen(true);
   }
 
   async function getToys() {
-    const data = await new Api().getToys();
+    const data = await new Api(navigate).getToys();
     setToys(data);
   }
 
@@ -62,7 +64,7 @@ export function Admin() {
   }, []);
 
   async function handleDeleteToy(toy) {
-    await Api().deleteToy(toy);
+    await Api(navigate).deleteToy(toy);
     getToys();
   }
 

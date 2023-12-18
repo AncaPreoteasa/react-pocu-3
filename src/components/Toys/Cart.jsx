@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useAuthContext } from "../../features/Auth/AuthContext";
 import { Loader } from "./Loader";
 import Api from "../../features/Api";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./Cart.module.css";
 
@@ -11,18 +12,19 @@ export function Cart() {
   const [toys, setToys] = useState([]);
   const [cart, setCart] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function patchCart(cart) {
-    await Api().patchCart(cart, accessToken);
+    await Api(navigate).patchCart(cart, accessToken);
   }
 
   useEffect(() => {
     async function getToys() {
       setIsLoading(true);
 
-      const toysData = await new Api().getToys();
+      const toysData = await new Api(navigate).getToys();
       setToys(toysData);
-      await Api()
+      await Api(navigate)
         .getCart(user, accessToken)
         .then((cartData) => {
           let cart = cartData[0];
@@ -46,7 +48,7 @@ export function Cart() {
   }
 
   async function handleAddMore(toyId) {
-    await Api()
+    await Api(navigate)
       .getCart(user, accessToken)
       .then((cartData) => {
         const cart = cartData[0];
@@ -68,7 +70,7 @@ export function Cart() {
   }
 
   function handleRemoveOne(toyId) {
-    Api()
+    Api(navigate)
       .getCart(user, accessToken)
       .then((cartData) => {
         const cart = cartData[0];
