@@ -2,10 +2,11 @@
   "users": [
     {
       "email": "p@p.com",
-      "password": "$2a$10$wwrNTtzZjljm3hP1n1QKI.X0.aeOXuCX57GYulpooi.jHnt8wKUOC",
+      "password": "$2a$10$/LPRSH7.qbrojDJ6gxF94eN8zvV3JuSbX7kc92iedTlZCJzfOGNVe",
       "firstName": "Paul",
-      "lastName": "Negoesc",
-      "id": 1
+      "lastName": "Negoescu",
+      "id": 1,
+      "retypePassword": "parola"
     },
     {
       "email": "a@a.com",
@@ -15,18 +16,33 @@
       "id": 2
     },
     {
-      "email": "m@m",
-      "password": "$2a$10$NA1obuH.z3SPhJ7KYEMngOWtc8/WMZfs24Mzlm9fyJRFzkRLgjo2m",
-      "firstName": "Marina",
-      "lastName": "Marina",
+      "email": "a@a",
+      "password": "$2a$10$QBBDpTRcg8U1EzxtLoRma.KCu0LKvs2O6ONA2qZO4n4wcIfubZ2z2",
+      "firstName": "Anca",
+      "lastName": "Preoteasa",
       "id": 3
     },
     {
-      "email": "g@g",
-      "password": "$2a$10$bBvN4rvbFrsIaxMRZBpCKe1VLBXN3C.BGluDgE3YZXQ0TdWQAHL.G",
-      "firstName": "Gabriel",
-      "lastName": "Gabriel",
+      "email": "m@m",
+      "password": "$2a$10$sgd1kB/zehsSaMQ/rfEqgO3ruXz1tdTJ4/fCPR7SwnYu.xdteX9di",
+      "firstName": "Maria",
+      "lastName": "Maria",
       "id": 4
+    },
+    {
+      "email": "b@b",
+      "password": "$2a$10$iPY/W6BH5O.745fhulcv1.tCMET9OvMu2JMWCz/A.U4QO4L30DBA.",
+      "firstName": "Bogdan",
+      "lastName": "Bogdan",
+      "id": 5,
+      "retypePassword": "parola"
+    },
+    {
+      "email": "l@l",
+      "password": "$2a$10$nYuzDtw7bdibgk1Ys.pWi.YhbKclsv9pK1XbGHanzDyeFO3vqzBgm",
+      "firstName": "Laura",
+      "lastName": "Laura",
+      "id": 6
     }
   ],
   "carts": [
@@ -35,11 +51,15 @@
       "userId": 1,
       "items": [
         {
-          "toyId": 3,
-          "quantity": 3
+          "toyId": 9,
+          "quantity": 1
         },
         {
           "toyId": 1,
+          "quantity": 2
+        },
+        {
+          "toyId": 3,
           "quantity": 1
         }
       ]
@@ -66,97 +86,99 @@
       "userId": 3,
       "items": [
         {
-          "toyId": 1,
-          "quantity": 2
-        },
-        {
-          "toyId": 3,
-          "quantity": 4
-        },
-        {
           "toyId": 4,
-          "quantity": 2
+          "quantity": 1
         }
       ],
       "id": 3
     },
     {
-      "userId": 3,
-      "items": [],
+      "userId": 4,
+      "items": [
+        {
+          "toyId": 3,
+          "quantity": 1
+        }
+      ],
       "id": 4
     },
     {
-      "userId": 4,
+      "userId": 5,
       "items": [],
       "id": 5
+    },
+    {
+      "userId": 6,
+      "items": [],
+      "id": 6
     }
   ],
   "toys": [
     {
-      "name": "doll",
-      "price": "500",
-      "amount": "1000",
-      "img": "/doll.jpeg",
-      "description": "Barbie doll, 20 cm",
-      "category": "girls",
-      "weight": "0.79",
       "brand": "Original Barbie",
+      "amount": 60,
+      "description": "Barbie doll, 40 cm",
+      "img": "/doll.jpeg",
+      "price": 28,
+      "name": "doll",
+      "category": "girls",
+      "weight": "1.5",
       "id": 1
     },
     {
       "name": "car",
-      "price": 7,
-      "id": 2,
+      "price": "6",
       "amount": 0,
       "img": "/car.jpg",
       "description": "Sports car, 15 cm",
       "category": "boys",
-      "weight": 0.79,
-      "brand": "Carvie"
+      "weight": "0.79",
+      "brand": "Carvie",
+      "id": 2
     },
     {
-      "name": "teddy",
-      "price": 7,
-      "id": 3,
+      "brand": "Notello",
       "amount": 10,
-      "img": "/teddy.jpg",
       "description": "Teddy bear, 40 cm",
-      "category": "girls",
-      "weight": 0.5,
-      "brand": "Notello"
+      "img": "/teddy.jpg",
+      "price": 7,
+      "name": "teddy",
+      "category": "unisex",
+      "weight": "0.4",
+      "id": 3
     },
     {
-      "name": "lego",
-      "price": 10,
-      "id": 4,
-      "amount": 3,
+      "brand": "LEGO",
+      "amount": 2,
+      "description": "Legos, 100 cm",
       "img": "/legos.webp",
-      "description": "Legos, 150 cm",
+      "price": 15,
+      "name": "lego",
       "category": "boys",
-      "weight": 0.79,
-      "brand": "LEGO"
+      "weight": "0.79",
+      "id": 4
     },
     {
       "name": "football",
-      "price": 2,
-      "id": 5,
+      "price": "3",
       "amount": 20,
       "img": "/football.webp",
       "description": "Football, size 5",
       "category": "boys",
-      "weight": 0.79,
-      "brand": "Notello"
+      "weight": "0.79",
+      "brand": "Notello",
+      "id": 5
     },
     {
-      "name": "rattle",
-      "price": 1,
-      "id": 6,
-      "amount": 30,
-      "img": "/rattle.webp",
+      "brand": "Notello",
+      "amount": 17,
       "description": "Baby rattle, rainbow color",
-      "category": "baby",
-      "weight": 0.79,
-      "brand": "Notello"
+      "img": "/rattle.webp",
+      "price": 1,
+      "name": "rattle",
+      "category": "babies",
+      "weight": "0.25",
+      "id": 6
     }
   ]
 }
