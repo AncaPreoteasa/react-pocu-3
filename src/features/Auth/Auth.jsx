@@ -60,10 +60,6 @@ export function Auth() {
       }
     ).then(async (res) => {
       const data = res.json();
-      // if (res.status >= 400 && res.status < 500) {
-      //   const message = await data;
-      //   toast.error(message);
-      // }
       return data;
     });
 
