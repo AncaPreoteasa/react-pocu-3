@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useAuthContext } from "../../features/Auth/AuthContext";
 import Api from "../../features/Api";
@@ -12,16 +12,16 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 
 export function ToysListItem({ toy, onReadMore }) {
-  const { user, accessToken } = useAuthContext();
+  const { user, accessToken, logout } = useAuthContext();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [removeFromCartDialogOpen, setRemoveFromCartDialogOpen] =
     useState(false);
   const navigate = useNavigate();
 
   function handleAddToCart() {
-    Api(navigate)
+    Api(navigate, logout)
       .getCart(user, accessToken)
-      .then(async function (cartData) {
+      ?.then(async function (cartData) {
         const cart = cartData[0];
         const cartItem = cart?.items?.find(
           (cartItem) => cartItem.toyId === toy.id
@@ -35,7 +35,7 @@ export function ToysListItem({ toy, onReadMore }) {
           });
         }
 
-        await Api(navigate).patchCart(cart, accessToken);
+        await Api(navigate, logout).patchCart(cart, accessToken);
         setDialogOpen(true);
       });
   }
@@ -49,14 +49,16 @@ export function ToysListItem({ toy, onReadMore }) {
   };
 
   function handleRemoveFromCart() {
-    Api(navigate)
+    Api(navigate, logout)
       .getCart(user, accessToken)
-      .then((cartData) => {
-        let cart = cartData[0];
-        cart.items = cart.items.filter((item) => item.toyId !== toy.id);
+      ?.then((cartData) => {
+        if (cartData) {
+          let cart = cartData[0];
+          cart.items = cart.items.filter((item) => item.toyId !== toy.id);
 
-        Api(navigate).patchCart(cart, accessToken);
-        setRemoveFromCartDialogOpen(true);
+          Api(navigate, logout).patchCart(cart, accessToken);
+          setRemoveFromCartDialogOpen(true);
+        }
       });
   }
 

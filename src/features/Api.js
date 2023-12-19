@@ -1,8 +1,26 @@
 import { toast } from "react-toastify";
 
-export default function Api(navigate) {
+export default function Api(navigate, logout) {
   function getToys() {
-    return fetch("http://localhost:3000/toys").then((res) => res.json());
+    return fetch("http://localhost:3000/toys")
+      .then((response) => {
+        if (response.status === 401) {
+          toast.error("You must log in first");
+          logout();
+          navigate("/login");
+          return;
+        }
+
+        if (response.status !== 200 && response.status !== 201) {
+          throw new Error();
+        }
+
+        return response.json();
+      })
+      .catch((e) => {
+        toast.error("Failed to get toys");
+        throw e;
+      });
   }
 
   function patchCart(cart, accessToken) {
@@ -16,11 +34,13 @@ export default function Api(navigate) {
     })
       .then((response) => {
         if (response.status === 401) {
+          toast.error("You must log in first");
+          logout();
           navigate("/login");
           return;
         }
 
-        if (response.status !== 200) {
+        if (response.status !== 200 && response.status !== 201) {
           throw new Error();
         }
 
@@ -33,6 +53,11 @@ export default function Api(navigate) {
   }
 
   function getCart(user, accessToken) {
+    if (!user) {
+      toast.error("Please log in first");
+      navigate("/login");
+      return;
+    }
     return fetch(`http://localhost:3000/carts?userId=${user.id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -40,11 +65,13 @@ export default function Api(navigate) {
     })
       .then((response) => {
         if (response.status === 401) {
+          toast.error("You must log in first");
+          logout();
           navigate("/login");
           return;
         }
 
-        if (response.status !== 200) {
+        if (response.status !== 200 && response.status !== 201) {
           throw new Error();
         }
 
@@ -52,6 +79,7 @@ export default function Api(navigate) {
       })
       .catch((e) => {
         toast.error("Failed to get cart");
+        throw e;
       });
   }
 
@@ -65,11 +93,13 @@ export default function Api(navigate) {
     })
       .then((response) => {
         if (response.status === 401) {
+          toast.error("You must log in first");
+          logout();
           navigate("/login");
           return;
         }
 
-        if (response.status !== 200) {
+        if (response.status !== 200 && response.status !== 201) {
           throw new Error();
         }
 
@@ -77,6 +107,7 @@ export default function Api(navigate) {
       })
       .catch((e) => {
         toast.error("Failed to create toy");
+        throw e;
       });
   }
 
@@ -90,11 +121,13 @@ export default function Api(navigate) {
     })
       .then((response) => {
         if (response.status === 401) {
+          toast.error("You must log in first");
+          logout();
           navigate("/login");
           return;
         }
 
-        if (response.status !== 200) {
+        if (response.status !== 200 && response.status !== 201) {
           throw new Error();
         }
 
@@ -102,6 +135,7 @@ export default function Api(navigate) {
       })
       .catch((e) => {
         toast.error("Failed to update toy");
+        throw e;
       });
   }
 
@@ -111,18 +145,22 @@ export default function Api(navigate) {
     })
       .then((response) => {
         if (response.status === 401) {
+          toast.error("You must log in first");
+          logout();
           navigate("/login");
           return;
         }
 
-        if (response.status !== 200) {
+        if (response.status !== 200 && response.status !== 201) {
           throw new Error();
         }
 
+        toast.success("You have successfully deleted your toy");
         return response;
       })
       .catch((e) => {
         toast.error("Failed to delete toy");
+        throw e;
       });
   }
   return {

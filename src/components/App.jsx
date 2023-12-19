@@ -6,8 +6,8 @@ import { Auth } from "../features/Auth/Auth";
 import { AuthContextProvider } from "../features/Auth/AuthContext";
 import { ToysList } from "./Toys/ToysList";
 import { Cart } from "./Toys/Cart";
-import { Profile } from "./Toys/Profile";
-import { Admin } from "./Toys/Admin";
+import { Profile } from "./Profile/Profile";
+import { Admin } from "./Admin/Admin";
 
 import "react-toastify/dist/ReactToastify.min.css";
 import "./App.css";

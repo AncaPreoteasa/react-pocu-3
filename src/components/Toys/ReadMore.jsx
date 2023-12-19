@@ -10,16 +10,16 @@ import Api from "../../features/Api";
 import { useNavigate } from "react-router-dom";
 
 export function ReadMore({ toy, onClose }) {
-  const { user, accessToken } = useAuthContext();
+  const { user, accessToken, logout } = useAuthContext();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [removeFromCartDialogOpen, setRemoveFromCartDialogOpen] =
     useState(false);
   const navigate = useNavigate();
 
   function handleAddToCart() {
-    Api(navigate)
+    Api(navigate, logout)
       .getCart(user, accessToken)
-      .then((cartData) => {
+      ?.then((cartData) => {
         const cart = cartData[0];
         const cartItem = cart.items.find(
           (cartItem) => cartItem.toyId === toy.id
@@ -33,7 +33,7 @@ export function ReadMore({ toy, onClose }) {
           });
         }
 
-        Api(navigate).patchCart(cart, accessToken);
+        Api(navigate, logout).patchCart(cart, accessToken);
         setDialogOpen(true);
       });
   }
@@ -47,13 +47,13 @@ export function ReadMore({ toy, onClose }) {
   };
 
   function handleRemoveFromCart() {
-    Api(navigate)
+    Api(navigate, logout)
       .getCart(user, accessToken)
-      .then((cartData) => {
+      ?.then((cartData) => {
         let cart = cartData[0];
         cart.items = cart.items.filter((item) => item.toyId !== toy.id);
 
-        Api(navigate).patchCart(cart, accessToken);
+        Api(navigate, logout).patchCart(cart, accessToken);
         setRemoveFromCartDialogOpen(true);
       });
   }

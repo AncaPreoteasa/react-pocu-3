@@ -1,37 +1,40 @@
 import { useState, useEffect } from "react";
 
 import { useAuthContext } from "../../features/Auth/AuthContext";
-import { Loader } from "./Loader";
+import { Loader } from "../../features/Loader/Loader";
 import Api from "../../features/Api";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Cart.module.css";
 
 export function Cart() {
-  const { user, accessToken } = useAuthContext();
+  const { user, accessToken, logout } = useAuthContext();
   const [toys, setToys] = useState([]);
   const [cart, setCart] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   async function patchCart(cart) {
-    await Api(navigate).patchCart(cart, accessToken);
+    await Api(navigate, logout).patchCart(cart, accessToken);
   }
 
   useEffect(() => {
     async function getToys() {
       setIsLoading(true);
 
-      const toysData = await new Api(navigate).getToys();
+      const toysData = await new Api(navigate, logout).getToys();
       setToys(toysData);
-      await Api(navigate)
+      await Api(navigate, logout)
         .getCart(user, accessToken)
-        .then((cartData) => {
+        ?.then((cartData) => {
           let cart = cartData[0];
           if (cart) {
             setCart(cartData[0]);
           } else {
-            //TODO!!!
+            setCart({
+              userId: user.id,
+              items: [],
+            });
           }
         });
       setIsLoading(false);
@@ -48,7 +51,7 @@ export function Cart() {
   }
 
   async function handleAddMore(toyId) {
-    await Api(navigate)
+    await Api(navigate, logout)
       .getCart(user, accessToken)
       .then((cartData) => {
         const cart = cartData[0];
@@ -70,7 +73,7 @@ export function Cart() {
   }
 
   function handleRemoveOne(toyId) {
-    Api(navigate)
+    Api(navigate, logout)
       .getCart(user, accessToken)
       .then((cartData) => {
         const cart = cartData[0];

@@ -4,10 +4,11 @@ import styles from "./ToysList.module.css";
 
 import { ToysListItem } from "./ToysListItem";
 import { ReadMore } from "./ReadMore";
-import { SearchBar } from "./SearchBar";
-import { Loader } from "./Loader";
+import { SearchBar } from "../../features/SearchBar/SearchBar";
+import { Loader } from "../../features/Loader/Loader";
 import Api from "../../features/Api";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../features/Auth/AuthContext";
 
 export function ToysList() {
   const [toys, setToys] = useState([]);
@@ -16,6 +17,7 @@ export function ToysList() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { logout } = useAuthContext();
 
   function handleReadMore(toy) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -30,11 +32,13 @@ export function ToysList() {
     async function getToys() {
       setIsLoading(true);
 
-      const data = await new Api(navigate).getToys().then((data) => {
-        setToys(data);
-        setFilteredToys(data);
-        setReadMoreToy(data[0]);
-      });
+      const data = await Api(navigate, logout)
+        .getToys()
+        .then((data) => {
+          setToys(data);
+          setFilteredToys(data);
+          setReadMoreToy(data[0]);
+        });
       setIsLoading(false);
     }
     getToys();

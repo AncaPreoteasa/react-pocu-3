@@ -17,6 +17,7 @@ const schema = object({
     .min(5, "The description needs to be at least 5 characters long"),
   amount: number().typeError("Please enter a valid number for the amount."),
   brand: string().required("Please provide a brand"),
+  weight: number().optional(),
 });
 
 export function EditableToy({
@@ -144,14 +145,9 @@ export function EditableToy({
         <div className={styles.editableToy}>
           <label>Weight </label>
           <input
-            type="text"
+            type="number"
             name="weight"
-            {...register("weight", {
-              pattern: {
-                value: /^[0-9]+(\.[0-9]+)?$/,
-                message: "Please enter a valid number for the weight.",
-              },
-            })}
+            {...register("weight")}
             defaultValue={toy.weight}
           />
           {errors.weight && (

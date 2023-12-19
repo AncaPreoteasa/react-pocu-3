@@ -7,10 +7,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { number, object, string } from "yup";
 import { toast } from "react-toastify";
 
-import { EditableToy } from "./EditableToy";
+import { EditableToy } from "../Toys/EditableToy";
 import Api from "../../features/Api";
 import styles from "./Admin.module.css";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../features/Auth/AuthContext";
 
 const schema = object({
   name: string()
@@ -23,6 +24,7 @@ const schema = object({
     .min(5, "The description needs to be at least 5 characters long"),
   amount: number().typeError("Please enter a valid number for the amount."),
   brand: string().required("Please provide a brand"),
+  weight: number().optional(),
 });
 
 export function Admin() {
@@ -30,6 +32,7 @@ export function Admin() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
   const navigate = useNavigate();
+  const { logout } = useAuthContext();
 
   const {
     register,
@@ -38,7 +41,7 @@ export function Admin() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    Api(navigate)
+    Api(navigate, logout)
       .postToy(data)
       .then((entry) => {
         setIsDialogOpen(true);
@@ -49,13 +52,13 @@ export function Admin() {
   };
 
   async function handleSubmitToy(updatedToy) {
-    await Api(navigate).putToy(updatedToy);
+    await Api(navigate, logout).putToy(updatedToy);
     getToys();
     setSubmitDialogOpen(true);
   }
 
   async function getToys() {
-    const data = await new Api(navigate).getToys();
+    const data = await Api(navigate, logout).getToys();
     setToys(data);
   }
 
@@ -64,7 +67,7 @@ export function Admin() {
   }, []);
 
   async function handleDeleteToy(toy) {
-    await Api(navigate).deleteToy(toy);
+    await Api(navigate, logout).deleteToy(toy);
     getToys();
   }
 
@@ -138,16 +141,7 @@ export function Admin() {
           </div>
           <div>
             <label>Weight</label>
-            <input
-              type="text"
-              name="weight"
-              {...register("weight", {
-                pattern: {
-                  value: /^[0-9]+(\.[0-9]+)?$/,
-                  message: "Please enter a valid number for the weight.",
-                },
-              })}
-            />
+            <input type="number" name="weight" {...register("weight")} />
             {errors.weight && (
               <p className={styles.error}>{errors.weight.message}</p>
             )}

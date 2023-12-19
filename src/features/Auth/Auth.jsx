@@ -47,8 +47,6 @@ export function Auth() {
   const { login } = useAuthContext();
 
   async function onSubmit(values) {
-    // const dataForServer = {...values};
-    // delete dataForServer.retypePassword;
     const { retypePassword, ...dataForServer } = values;
 
     const data = await fetch(
@@ -70,7 +68,6 @@ export function Auth() {
     });
 
     if (isRegister) {
-      console.log("data ", data.user.id);
       await fetch(`http://localhost:3000/carts`, {
         method: "POST",
         headers: {

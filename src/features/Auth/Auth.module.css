@@ -50,3 +50,9 @@
   color: var(--error-color);
   margin-top: 0;
 }
+
+@media (max-width: 600px) {
+  .brandForm {
+    max-width: 300px;
+  }
+}
